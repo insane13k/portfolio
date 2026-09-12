@@ -63,8 +63,7 @@ html.cur-big .cur .ring { width: 60px; height: 60px; margin: -30px 0 0 -30px; op
 .res:hover { border-color: var(--a); }
 
 /* ───────── hero ───────── */
-.hero { position: relative; max-width: 1180px; margin: 0 auto; padding: 130px 32px 40px; display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 40px; min-height: 86vh; }
-.h-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.hero { position: relative; max-width: 1180px; margin: 0 auto; padding: 150px 32px 40px; display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 40px; min-height: 86vh; }
 .h-copy { position: relative; z-index: 2; }
 .h1 { font-size: clamp(3rem, 7.2vw, 6.2rem); font-weight: 800; line-height: .95; letter-spacing: -.04em; margin: 18px 0 20px; }
 .h1 .ln { display: block; }
@@ -77,11 +76,7 @@ html.cur-big .cur .ring { width: 60px; height: 60px; margin: -30px 0 0 -30px; op
 .btn { display: inline-block; font: 600 .8rem var(--body); padding: 13px 20px; border-radius: 12px; color: var(--text); border: 1px solid var(--line2); background: color-mix(in srgb, var(--bg2) 60%, transparent); transition: transform .15s ease-out, border-color .2s; cursor: pointer; will-change: transform; }
 .btn.p { background: linear-gradient(90deg, var(--a), var(--b)); color: #06080F; border-color: transparent; box-shadow: 0 10px 30px -10px var(--a); }
 .btn.g:hover { border-color: var(--a); }
-.slot { aspect-ratio: 1; width: min(100%, 430px); justify-self: end; }
-.feat.tilt { position: relative; z-index: 3; width: 300px; }
-.feat .shot { height: 130px; margin: 10px 0; }
-.feat h3 { font-size: 1rem; margin-top: 4px; }
-.feat p { font-size: .78rem; color: var(--muted); margin: 4px 0 0; }
+.slot { aspect-ratio: 1; width: min(100%, 560px); justify-self: end; }
 
 /* ───────── cards ───────── */
 .tilt { position: relative; border: 1px solid var(--line2); border-radius: 16px; background: color-mix(in srgb, var(--bg2) 78%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 16px; transition: transform .15s ease-out, border-color .2s; transform-style: preserve-3d; --gx: 50%; --gy: 50%; overflow: hidden; display: block; }
@@ -194,9 +189,7 @@ footer { max-width: 1180px; margin: 0 auto; padding: 26px 32px 80px; display: fl
 /* ───────── responsive ───────── */
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; padding: 110px 20px 24px; min-height: 0; gap: 8px; }
-  .h-right { display: contents; }
   .slot { order: -1; width: min(62vw, 250px); justify-self: center; }
-  .feat.tilt { width: 100%; margin-top: 18px; }
   .nav .links { display: none; }
   .meta { padding: 18px 20px 80px; gap: 10px 22px; }
   .sec { padding: 0 20px 100px; }

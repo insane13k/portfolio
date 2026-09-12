@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { content } from '../content'
 import { useClock, useReducedMotion } from '../lib/hooks'
 import { Magnetic } from './Magnetic'
-import { Tilt } from './Tilt'
 
 /** Types the phrases in content.roles one after another. */
 function useTypewriter(phrases: string[], enabled: boolean) {
@@ -41,18 +40,7 @@ export function Hero() {
             <Magnetic className="btn g" href="#contact">Get in touch</Magnetic>
           </div>
         </div>
-        <div className="h-right">
-          <div className="slot" id="hero-slot" aria-hidden="true" />
-          {featured && (
-            <Tilt className="feat" href="#work">
-              <span className="tag">Featured project</span>
-              <h3>{featured.title}</h3>
-              <p>{featured.description}</p>
-              <div className={`shot${featured.images?.length ? ' has-img phones' : ''}`}>{featured.images?.slice(0, 2).map(src => <img key={src} src={src} alt="" loading="lazy" />)}</div>
-              <div className="tags">{featured.tags.map(t => <span key={t}>{t}</span>)}{featured.live && <span>Live ↗</span>}</div>
-            </Tilt>
-          )}
-        </div>
+        <div className="slot" id="hero-slot" aria-hidden="true" />
       </section>
       <div className="meta">
         <span>{content.location} · {clock}</span>
