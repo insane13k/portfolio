@@ -46,7 +46,7 @@ export const content = {
 
   socials: [
     { label: 'GitHub', href: 'https://github.com/insane13k' },
-    { label: 'LinkedIn', href: '' },   // add your LinkedIn URL to show it
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/aryan1306' },
     { label: 'WhatsApp', href: 'https://wa.me/917733812152' },
   ],
 
