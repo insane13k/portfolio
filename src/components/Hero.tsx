@@ -41,16 +41,18 @@ export function Hero() {
             <Magnetic className="btn g" href="#contact">Get in touch</Magnetic>
           </div>
         </div>
-        <div className="slot" id="hero-slot" aria-hidden="true" />
-        {featured && (
-          <Tilt className="feat" href="#work">
-            <span className="tag">Featured project</span>
-            <h3>{featured.title}</h3>
-            <p>{featured.description}</p>
-            <div className={`shot${featured.images?.length ? ' has-img phones' : ''}`}>{featured.images?.slice(0, 2).map(src => <img key={src} src={src} alt="" loading="lazy" />)}</div>
-            <div className="tags">{featured.tags.map(t => <span key={t}>{t}</span>)}{featured.live && <span>Live ↗</span>}</div>
-          </Tilt>
-        )}
+        <div className="h-right">
+          <div className="slot" id="hero-slot" aria-hidden="true" />
+          {featured && (
+            <Tilt className="feat" href="#work">
+              <span className="tag">Featured project</span>
+              <h3>{featured.title}</h3>
+              <p>{featured.description}</p>
+              <div className={`shot${featured.images?.length ? ' has-img phones' : ''}`}>{featured.images?.slice(0, 2).map(src => <img key={src} src={src} alt="" loading="lazy" />)}</div>
+              <div className="tags">{featured.tags.map(t => <span key={t}>{t}</span>)}{featured.live && <span>Live ↗</span>}</div>
+            </Tilt>
+          )}
+        </div>
       </section>
       <div className="meta">
         <span>{content.location} · {clock}</span>

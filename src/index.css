@@ -63,7 +63,8 @@ html.cur-big .cur .ring { width: 60px; height: 60px; margin: -30px 0 0 -30px; op
 .res:hover { border-color: var(--a); }
 
 /* ───────── hero ───────── */
-.hero { position: relative; max-width: 1180px; margin: 0 auto; padding: 150px 32px 40px; display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 40px; min-height: 86vh; }
+.hero { position: relative; max-width: 1180px; margin: 0 auto; padding: 130px 32px 40px; display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 40px; min-height: 86vh; }
+.h-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
 .h-copy { position: relative; z-index: 2; }
 .h1 { font-size: clamp(3rem, 7.2vw, 6.2rem); font-weight: 800; line-height: .95; letter-spacing: -.04em; margin: 18px 0 20px; }
 .h1 .ln { display: block; }
@@ -76,9 +77,9 @@ html.cur-big .cur .ring { width: 60px; height: 60px; margin: -30px 0 0 -30px; op
 .btn { display: inline-block; font: 600 .8rem var(--body); padding: 13px 20px; border-radius: 12px; color: var(--text); border: 1px solid var(--line2); background: color-mix(in srgb, var(--bg2) 60%, transparent); transition: transform .15s ease-out, border-color .2s; cursor: pointer; will-change: transform; }
 .btn.p { background: linear-gradient(90deg, var(--a), var(--b)); color: #06080F; border-color: transparent; box-shadow: 0 10px 30px -10px var(--a); }
 .btn.g:hover { border-color: var(--a); }
-.slot { aspect-ratio: 1; width: min(100%, 560px); justify-self: end; }
-.feat.tilt { position: absolute; right: 32px; bottom: 34px; z-index: 3; width: 272px; }
-.feat .shot { height: 124px; margin: 10px 0; }
+.slot { aspect-ratio: 1; width: min(100%, 430px); justify-self: end; }
+.feat.tilt { position: relative; z-index: 3; width: 300px; }
+.feat .shot { height: 130px; margin: 10px 0; }
 .feat h3 { font-size: 1rem; margin-top: 4px; }
 .feat p { font-size: .78rem; color: var(--muted); margin: 4px 0 0; }
 
@@ -151,7 +152,7 @@ html.cur-big .cur .ring { width: 60px; height: 60px; margin: -30px 0 0 -30px; op
 .heat i { aspect-ratio: 1; border-radius: 2px; background: var(--line); display: block; }
 .heat .l1 { background: color-mix(in srgb, var(--a) 28%, var(--line)); } .heat .l2 { background: color-mix(in srgb, var(--a) 52%, var(--line)); } .heat .l3 { background: color-mix(in srgb, var(--a) 80%, var(--line)); } .heat .l4 { background: var(--a); }
 .stk { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 12px; }
-.stk span { aspect-ratio: 1.4; display: grid; place-items: center; border: 1px solid var(--line2); border-radius: 8px; font: 600 .66rem var(--mono); color: var(--muted); background: var(--bg); text-align: center; padding: 2px; }
+.stk span { min-height: 38px; display: grid; place-items: center; border: 1px solid var(--line2); border-radius: 8px; font: 600 .62rem var(--mono); color: var(--muted); background: var(--bg); text-align: center; padding: 4px 3px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .cur-list { margin-top: 10px; font-size: .9rem; line-height: 1.7; }
 .cur-list b { color: var(--a); font-weight: 600; }
 
@@ -193,8 +194,9 @@ footer { max-width: 1180px; margin: 0 auto; padding: 26px 32px 80px; display: fl
 /* ───────── responsive ───────── */
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; padding: 110px 20px 24px; min-height: 0; gap: 8px; }
+  .h-right { display: contents; }
   .slot { order: -1; width: min(62vw, 250px); justify-self: center; }
-  .feat.tilt { position: static; width: 100%; margin-top: 18px; }
+  .feat.tilt { width: 100%; margin-top: 18px; }
   .nav .links { display: none; }
   .meta { padding: 18px 20px 80px; gap: 10px 22px; }
   .sec { padding: 0 20px 100px; }
@@ -207,6 +209,8 @@ footer { max-width: 1180px; margin: 0 auto; padding: 26px 32px 80px; display: fl
   .ab .big { grid-column: span 2; grid-row: auto; min-height: 220px; }
   .ab .gt { min-height: 150px; }
   .heat { grid-template-columns: repeat(14, 1fr); }
+  .stk { grid-template-columns: repeat(2, 1fr); }
+  .ab .gt { min-width: 0; }
   .sk-cols { grid-template-columns: 1fr 1fr; gap: 24px; }
   .contact { grid-template-columns: 1fr; padding: 0 20px 40px; gap: 24px; }
   .slot.c { width: 170px; justify-self: start; order: -1; }
