@@ -78,7 +78,7 @@ html.cur-big .cur .ring { width: 60px; height: 60px; margin: -30px 0 0 -30px; op
 .btn.g:hover { border-color: var(--a); }
 .slot { aspect-ratio: 1; width: min(100%, 560px); justify-self: end; }
 .feat.tilt { position: absolute; right: 32px; bottom: 34px; z-index: 3; width: 272px; }
-.feat .shot { height: 96px; margin: 10px 0; }
+.feat .shot { height: 124px; margin: 10px 0; }
 .feat h3 { font-size: 1rem; margin-top: 4px; }
 .feat p { font-size: .78rem; color: var(--muted); margin: 4px 0 0; }
 
@@ -93,6 +93,10 @@ html.cur-big .cur .ring { width: 60px; height: 60px; margin: -30px 0 0 -30px; op
 .shot.s3 { background: linear-gradient(135deg, color-mix(in srgb, var(--a) 16%, var(--bg2)), var(--bg3)); }
 .shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .shot.has-img::after { display: none; }
+/* phone screenshots: a pair of phones rising from the bottom edge */
+.shot.phones { display: flex; justify-content: center; align-items: flex-end; gap: 6%; padding: 7% 8% 0; background: linear-gradient(135deg, color-mix(in srgb, var(--a) 26%, var(--bg2)), color-mix(in srgb, var(--b) 26%, var(--bg2))); }
+.shot.phones img { position: static; width: 40%; height: 100%; max-height: 100%; object-fit: cover; object-position: top; border-radius: 14px 14px 0 0; border: 1px solid rgba(255,255,255,.18); border-bottom: 0; box-shadow: 0 -10px 40px -10px rgba(0,0,0,.6); }
+.shot.phones img:nth-child(2) { width: 34%; opacity: .92; }
 .tags { display: flex; gap: 6px; flex-wrap: wrap; }
 .tags span { font: 500 .62rem var(--mono); padding: 4px 8px; border-radius: 6px; background: rgba(255,255,255,.05); border: 1px solid var(--line); }
 .lk { display: flex; gap: 16px; margin-top: 14px; font: 600 .72rem var(--mono); color: var(--a); }
@@ -118,8 +122,15 @@ html.cur-big .cur .ring { width: 60px; height: 60px; margin: -30px 0 0 -30px; op
 .iprev p { font-size: .78rem; color: var(--muted); margin: 8px 2px 2px; }
 .pd { margin-top: 26px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .pd .tilt { padding: 14px; }
-.pd h3 { font-size: 1rem; }
+.pd .pshot { aspect-ratio: 16/10; margin-bottom: 12px; }
+.pd h3 { font-size: 1rem; margin-top: 6px; }
 .pd p { color: var(--muted); font-size: .85rem; margin: 6px 0 10px; }
+/* a single project gets a wide two-column card */
+.pd.one { grid-template-columns: 1fr; }
+.pd.one .pcard { display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: center; padding: 22px; }
+.pd.one .pshot { aspect-ratio: 16/11; margin: 0; }
+.pd.one h3 { font-size: 1.6rem; }
+.pd.one p { font-size: 1rem; max-width: 46ch; }
 
 /* ───────── about: live tiles ───────── */
 .ab { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 170px; gap: 14px; }
@@ -158,7 +169,7 @@ html.cur-big .cur .ring { width: 60px; height: 60px; margin: -30px 0 0 -30px; op
 .tl .hh { font: 500 .66rem var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--dim); margin: 8px 0 22px; }
 
 /* ───────── skills: plain columns ───────── */
-.sk-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; max-width: 900px; }
+.sk-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 32px; max-width: 1000px; }
 .sk-cols b { display: block; font: 500 .62rem var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
 .sk-cols ul { margin: 0; padding: 0; list-style: none; }
 .sk-cols li { line-height: 1.9; }
@@ -191,6 +202,7 @@ footer { max-width: 1180px; margin: 0 auto; padding: 26px 32px 80px; display: fl
   .ir .c { grid-column: 2; }
   .iprev { display: none; }
   .pd { grid-template-columns: 1fr; }
+  .pd.one .pcard { grid-template-columns: 1fr; gap: 16px; }
   .ab { grid-template-columns: 1fr 1fr; grid-auto-rows: auto; }
   .ab .big { grid-column: span 2; grid-row: auto; min-height: 220px; }
   .ab .gt { min-height: 150px; }

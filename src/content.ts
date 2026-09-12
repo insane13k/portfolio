@@ -2,7 +2,6 @@
  * ─────────────────────────────────────────────────────────────
  *  THIS IS THE ONLY FILE YOU NEED TO EDIT TO CHANGE WHAT THE SITE SAYS.
  *  Every section reads from here. Leave a field as "" to hide it.
- *  Lines marked  // SAMPLE  are placeholders — replace them with your real details.
  * ─────────────────────────────────────────────────────────────
  */
 
@@ -10,12 +9,12 @@ export type Project = {
   id: string
   title: string
   tagline: string          // one line, shown in the list
-  description: string      // 2–3 lines, shown in the preview card
+  description: string      // 2–3 lines, shown in the card
   year: string
   tags: string[]
   live?: string            // link to the live site / store listing
   code?: string            // link to the code
-  image?: string           // e.g. "/projects/proteinplate.jpg" (put the file in public/projects/)
+  images?: string[]        // files in public/projects/ — phone screenshots are shown as a pair of phones
   featured?: boolean
 }
 
@@ -29,7 +28,7 @@ export type Milestone = {
 export const content = {
   firstName: 'Aryan',
   lastName: 'Arora',
-  role: 'Full-stack developer',
+  role: 'Software engineer',
   status: 'Open to work',            // "" hides the green dot
   location: 'India',
   timeZone: 'Asia/Kolkata',
@@ -38,22 +37,21 @@ export const content = {
   roles: ['web apps.', 'Android apps.', 'shops that take real orders.'],
 
   intro:
-    'Full-stack developer. Recently shipped Protein Plate 2.0 — a live food-delivery shop with a customer site, admin panel and Android apps.',
+    'Software engineer at Capgemini. Outside work I built and run Protein Plate 2.0 — a live food-delivery platform with a customer site, admin panel and Android apps.',
 
   /** Put your resume at public/resume.pdf and set this to "/resume.pdf". "" hides the button. */
   resumeUrl: '',
 
-  /** Your email for the Contact section. "" hides the email link. */
-  email: '',                          // SAMPLE — add your email
+  email: 'aryanarora7733@gmail.com',
 
   socials: [
-    { label: 'GitHub', href: '' },     // SAMPLE — add links; empty ones are hidden
-    { label: 'LinkedIn', href: '' },
-    { label: 'WhatsApp', href: '' },
+    { label: 'GitHub', href: 'https://github.com/insane13k' },
+    { label: 'LinkedIn', href: '' },   // add your LinkedIn URL to show it
+    { label: 'WhatsApp', href: 'https://wa.me/917733812152' },
   ],
 
-  /** GitHub username for the live activity tile. "" shows a sample pattern instead. */
-  githubUsername: '',
+  /** GitHub username for the live activity tile. */
+  githubUsername: 'insane13k',
 
   projects: [
     {
@@ -61,65 +59,55 @@ export const content = {
       title: 'Protein Plate 2.0',
       tagline: 'Food-delivery platform · web, admin, Android, UPI',
       description:
-        'Customer site, admin panel, two Android apps and a manual UPI payment flow. Live and taking real orders.',
+        'Built solo for a real business: customer site with nutrition breakdown per order, admin panel, two Android apps and a UPI payment flow. Live and taking orders every day.',
       year: '2026',
-      tags: ['React', 'Firebase', 'Expo'],
-      live: '',                       // SAMPLE — add the shop URL
-      code: '',
-      image: '',
+      tags: ['React', 'Firebase', 'Expo', 'UPI payments'],
+      live: 'https://proteinplate.co.in',
+      images: ['/projects/pp2.jpeg', '/projects/pp1.jpeg'],
       featured: true,
-    },
-    {
-      id: 'project-two',
-      title: 'Your project',          // SAMPLE
-      tagline: 'Sample row — replaced with yours',
-      description: 'What it does, who it was for, what you built.',
-      year: '2025',
-      tags: ['Android'],
-    },
-    {
-      id: 'project-three',
-      title: 'Your project',          // SAMPLE
-      tagline: 'Sample row',
-      description: 'What it does, who it was for, what you built.',
-      year: '2024',
-      tags: ['Web'],
     },
   ] as Project[],
 
   about: {
     bio:
-      'Full-stack developer building web and Android products, and the systems behind them. Latest: Protein Plate 2.0 — customer site, admin panel, two Android apps.', // SAMPLE
-    stack: ['React', 'TypeScript', 'Firebase', 'Expo', 'Node'],
+      'Software engineer at Capgemini. Outside work I designed, built and run Protein Plate 2.0 — a live food-delivery platform with a customer site, admin panel and two Android apps. I like shipping things people actually use.',
+    stack: ['React', 'TypeScript', 'Firebase', 'Expo', 'Node', 'Tailwind'],
     currently: {
       building: 'Protein Plate 2.0',
-      learning: 'your pick',          // SAMPLE
+      learning: '',                   // e.g. "Next.js" — "" hides the line
       basedIn: 'India',
     },
   },
 
   experience: [
     {
-      period: '2026',
-      title: 'Full-stack developer',
-      org: 'Protein Plate 2.0 · own product',
+      period: 'Aug 2025 – Present',
+      title: 'Software Engineer',
+      org: 'Capgemini',
       description:
-        'Designed and built the customer site, admin panel, two Android apps and the payment flow. Live and taking orders.',
+        "Test engineer on IKEA's Workforce Management (WFM) tool. Design test cases and support integration, payroll and UAT testing across release cycles.",
     },
     {
-      period: '20——',                 // SAMPLE
-      title: 'Your role',
-      org: 'Company',
-      description: 'Two lines on what you did and what changed because of it.',
+      period: '2025 – Present',
+      title: 'Founder-developer',
+      org: 'Protein Plate 2.0 · own product',
+      description:
+        'Designed and built the customer site, admin panel, two Android apps and the payment flow. Live at proteinplate.co.in.',
     },
   ] as Milestone[],
 
   education: [
     {
-      period: '20—— – 20——',          // SAMPLE
-      title: 'Your degree',
-      org: 'Your college',
-      description: 'One highlight, if any.',
+      period: '2023 – 2025',
+      title: 'MCA — Master of Computer Applications',
+      org: 'JECRC University, Jaipur',
+      description: '',
+    },
+    {
+      period: '2020 – 2023',
+      title: 'BCA — Bachelor of Computer Applications',
+      org: 'Lachoo Memorial College, Jodhpur',
+      description: '',
     },
   ] as Milestone[],
 
@@ -127,7 +115,8 @@ export const content = {
     Frontend: ['React', 'TypeScript', 'Tailwind', 'Vite'],
     Mobile: ['React Native', 'Expo', 'Android builds'],
     Backend: ['Firebase', 'Firestore rules', 'Cloud Functions', 'Node'],
-    Tools: ['Git & GitHub', 'Netlify', 'Figma'],
+    Quality: ['Test case design', 'Integration testing', 'UAT', 'Payroll testing'],
+    Tools: ['Git & GitHub', 'Netlify', 'Firebase console'],
   } as Record<string, string[]>,
 
   contact: {

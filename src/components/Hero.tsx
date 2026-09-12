@@ -47,7 +47,7 @@ export function Hero() {
             <span className="tag">Featured project</span>
             <h3>{featured.title}</h3>
             <p>{featured.description}</p>
-            <div className={`shot${featured.image ? ' has-img' : ''}`}>{featured.image && <img src={featured.image} alt="" loading="lazy" />}</div>
+            <div className={`shot${featured.images?.length ? ' has-img phones' : ''}`}>{featured.images?.slice(0, 2).map(src => <img key={src} src={src} alt="" loading="lazy" />)}</div>
             <div className="tags">{featured.tags.map(t => <span key={t}>{t}</span>)}{featured.live && <span>Live ↗</span>}</div>
           </Tilt>
         )}

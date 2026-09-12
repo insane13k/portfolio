@@ -53,11 +53,11 @@ export function About() {
           <div className="small">{content.location} · local time</div>
           {content.status && <div className="small" style={{ marginTop: 'auto', color: 'var(--ok)' }}>● {content.status}</div>}
         </div>
-        <div className="gt">
-          <span className="lbl">GitHub activity{!real && <em> · sample</em>}</span>
+        <a className="gt" href={content.githubUsername ? `https://github.com/${content.githubUsername}` : '#'} target="_blank" rel="noopener">
+          <span className="lbl">GitHub{content.githubUsername && ` · @${content.githubUsername}`}{!real && <em> · sample</em>}</span>
           <div className="heat" aria-hidden="true">{(levels ?? []).map((l, i) => <i key={i} className={l ? `l${l}` : undefined} />)}</div>
-          <div className="small">Last 20 weeks</div>
-        </div>
+          <div className="small">{real && levels && !levels.some(Boolean) ? 'Fills in as work ships' : 'Last 20 weeks'}</div>
+        </a>
         <div className="gt">
           <span className="lbl">Stack</span>
           <div className="stk">{content.about.stack.slice(0, 6).map(s => <span key={s}>{s}</span>)}</div>

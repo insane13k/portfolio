@@ -21,7 +21,7 @@ export function Path() {
     <div className="ti">
       <span className="y">{m.period}</span>
       <h3>{m.title}<small>{m.org}</small></h3>
-      <p>{m.description}</p>
+      {m.description && <p>{m.description}</p>}
     </div>
   )
   return (
