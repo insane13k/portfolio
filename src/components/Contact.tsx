@@ -12,19 +12,30 @@ export function Contact() {
     e.preventDefault()
     const form = e.currentTarget
     const data = new FormData(form)
-    const body = new URLSearchParams()
-    body.set('form-name', 'contact')
-    for (const [k, v] of data.entries()) body.set(k, String(v))
+    const fields = { name: String(data.get('name') ?? ''), email: String(data.get('email') ?? ''), message: String(data.get('message') ?? '') }
     setBusy(true); setMsg(null)
     try {
-      const r = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() })
-      if (!r.ok) throw new Error(String(r.status))
+      // 1) Web3Forms: emails the message to you, with the visitor's address as Reply-To.
+      const r = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: content.web3formsKey,
+          subject: `Portfolio message from ${fields.name}`,
+          from_name: 'Portfolio contact form',
+          botcheck: data.get('bot-field') ? 'yes' : '',
+          ...fields,
+        }),
+      })
+      const j = (await r.json().catch(() => ({}))) as { success?: boolean }
+      if (!r.ok || !j.success) throw new Error('web3forms')
+      // 2) Netlify Forms as a silent backup copy (only works on the live site).
+      const body = new URLSearchParams({ 'form-name': 'contact', ...fields }).toString()
+      fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body }).catch(() => {})
       setMsg({ text: 'Sent — thank you. I reply within a day.' })
       form.reset()
     } catch {
-      setMsg(import.meta.env.DEV
-        ? { text: 'Sending only works on the live Netlify site, not on localhost.', err: true }
-        : { text: 'Could not send. Please email me instead.', err: true })
+      setMsg({ text: `Could not send. Please email me at ${content.email}.`, err: true })
     } finally { setBusy(false) }
   }
 

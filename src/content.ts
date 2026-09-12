@@ -44,6 +44,9 @@ export const content = {
 
   email: 'aryanarora7733@gmail.com',
 
+  /** Web3Forms access key — messages from the contact form are emailed to the address this key was created for. Safe to keep here. */
+  web3formsKey: 'ab0912e6-c56e-4f18-92ad-b4e8c422e696',
+
   socials: [
     { label: 'GitHub', href: 'https://github.com/insane13k' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/aryan1306' },
