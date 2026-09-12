@@ -1,0 +1,698 @@
+<title>Aryan Portfolio Directions</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=Sora:wght@400;600;700&family=Figtree:wght@400;500;600&family=DM+Mono:wght@400;500&family=Outfit:wght@200;300;400;500&display=swap">
+<style>
+:root{
+  --bg:#070A14;--bg2:#0C1020;--bg3:#121830;--line:#1C2440;--line2:#2A3560;
+  --text:#E7EAF6;--muted:#8F97B3;--dim:#5C6486;
+  --a:#38E1FF;--b:#B26BFF;--warn:#FFB547;--ok:#5EF0A0;
+  --display:'Syne',ui-sans-serif,system-ui,sans-serif;
+  --body:'Manrope',ui-sans-serif,system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(55% 40% at 15% -5%,rgba(56,225,255,.11),transparent 65%),
+    radial-gradient(45% 35% at 95% -5%,rgba(178,107,255,.12),transparent 65%),
+    linear-gradient(rgba(231,234,246,.028) 1px,transparent 1px) 0 0/100% 44px,
+    linear-gradient(90deg,rgba(231,234,246,.028) 1px,transparent 1px) 0 0/44px 100%;
+  -webkit-mask-image:linear-gradient(#000 40%,transparent);mask-image:linear-gradient(#000 40%,transparent)}
+a{color:var(--a);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--a);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1;letter-spacing:-.01em}
+h1{font-size:clamp(2.3rem,5.4vw,3.9rem);font-weight:800}
+h2{font-size:clamp(1.55rem,3vw,2.15rem);font-weight:800}
+h3{font-size:1.05rem;font-weight:700}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--a)}
+.eyebrow.ok{color:var(--ok)}.eyebrow.warn{color:var(--warn)}
+.wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 24px}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:20;background:rgba(7,10,20,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:20px;height:56px}
+.brand{font-family:var(--display);font-weight:800;font-size:.95rem;letter-spacing:.02em;white-space:nowrap}
+.brand b{color:var(--a)}
+.top nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;margin-left:auto}
+.top nav::-webkit-scrollbar{display:none}
+.top nav a{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:6px 10px;border-radius:6px;white-space:nowrap}
+.top nav a:hover{color:var(--text);background:var(--bg3);text-decoration:none}
+
+/* intro */
+.intro{padding:72px 0 44px}
+.intro h1{margin:14px 0 18px;max-width:16ch}
+.intro h1 em{font-style:normal;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:1.15rem;color:var(--muted);max-width:62ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.chip{font-family:var(--mono);font-size:.74rem;padding:6px 11px;border:1px solid var(--line2);border-radius:999px;color:var(--text);background:rgba(12,16,32,.6)}
+.chip b{color:var(--ok);font-weight:500}
+
+/* direction sections */
+.sec{padding:64px 0;border-top:1px solid var(--line)}
+.dir-h{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:start;margin-bottom:26px}
+.dir-id{display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:start}
+.letter{width:64px;height:64px;border-radius:16px;display:grid;place-items:center;font:800 1.9rem var(--display);border:1px solid var(--line2);background:var(--bg2)}
+.letter.B{color:#FF4A1C;background:#F1F0EB;border-color:#F1F0EB}
+.letter.C{color:#7A7CFF;background:#131316;border-color:#2A2A30}
+.letter.D{color:#0B0B0C;background:#F8F8FA;border-color:#F8F8FA}
+.letter.A{color:#38E1FF;background:#0C1020;border-color:#2A3560}
+.dir-id .k{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;display:block}
+.thesis{color:var(--muted);margin-top:8px;max-width:52ch}
+.dir-meta{display:flex;flex-direction:column;gap:12px;padding-top:6px}
+.meta-row{display:grid;grid-template-columns:84px 1fr;gap:12px;align-items:center}
+.lbl{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.sw{display:flex;gap:6px}
+.sw i{width:26px;height:26px;border-radius:7px;display:block;border:1px solid rgba(255,255,255,.08)}
+.spec{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:1rem;align-items:baseline}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-family:var(--mono);font-size:.7rem;padding:4px 9px;border:1px solid var(--line2);border-radius:999px;color:var(--muted)}
+
+/* stage */
+.stage{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:32px;align-items:start}
+.desk-wrap{position:relative;overflow:hidden}
+.desk{width:820px;transform-origin:top left;border:1px solid var(--line2);border-radius:12px;overflow:hidden;background:#060811;box-shadow:0 30px 80px -30px rgba(0,0,0,.85)}
+.chrome{display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;background:#0B0F1D;border-bottom:1px solid var(--line)}
+.chrome i{width:10px;height:10px;border-radius:50%}
+.chrome i:nth-child(1){background:#FF5F57}.chrome i:nth-child(2){background:#FEBC2E}.chrome i:nth-child(3){background:#28C840}
+.chrome span{margin-left:12px;flex:1;max-width:320px;font:400 .7rem var(--mono);color:var(--muted);background:#070A14;border:1px solid var(--line);border-radius:6px;padding:4px 10px}
+.site{position:relative;height:520px;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:none;line-height:1.5}
+.site::-webkit-scrollbar{display:none}
+.site h1,.site h2,.site h3{text-wrap:wrap}
+.hint{font:400 .7rem var(--mono);color:var(--dim);margin-top:10px;display:flex;gap:14px;flex-wrap:wrap}
+.hint b{color:var(--muted);font-weight:500}
+
+/* phone */
+.phone{width:260px;height:540px;border-radius:38px;border:1px solid var(--line2);background:#060811;position:relative;overflow:hidden;box-shadow:0 30px 80px -30px rgba(0,0,0,.85),inset 0 0 0 6px #0B0F1D;margin:0 auto}
+.notch{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:84px;height:22px;border-radius:12px;background:#0B0F1D;z-index:5}
+.ph{position:absolute;inset:6px;border-radius:32px;display:flex;flex-direction:column;z-index:2;line-height:1.45;overflow:hidden}
+
+/* moves */
+.moves{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:22px;margin-top:26px;padding-top:22px;border-top:1px dashed var(--line)}
+.moves ul{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:.92rem}
+.moves li{margin:4px 0}
+.moves p{margin-top:8px;color:var(--muted);font-size:.92rem}
+
+/* ==== B: Studio Editorial ==== */
+.sB,.pB{--g:#F1F0EB;--ink:#0F0F0F;--mu:#6E6E6A;--ac:#FF4A1C;--ln:#D9D8D2;background:var(--g);color:var(--ink);font-family:'Instrument Sans',var(--body)}
+.b-top{display:flex;align-items:center;gap:22px;padding:16px 26px;border-bottom:1px solid var(--ln);font-size:12px}
+.b-name{font:600 12px 'Bricolage Grotesque',sans-serif}
+.b-role{color:var(--mu)}
+.b-links{margin-left:auto}.b-links i{color:var(--mu);font-style:normal;margin:0 6px}
+.b-clock{font:500 11px var(--mono);color:var(--mu)}
+.b-hero{padding:34px 26px 24px}
+.b-h1{font:800 118px/.88 'Bricolage Grotesque',sans-serif;letter-spacing:-.045em;margin:0 0 22px;text-transform:uppercase}
+.b-h1 .ln{display:block;overflow:hidden;padding-bottom:.04em}
+.b-h1 .ln span{display:block;animation:bUp .9s cubic-bezier(.2,.7,.1,1) both}
+.b-h1 .ln:nth-child(2) span{animation-delay:.08s}
+.b-h1 em{font-style:normal;color:var(--ac)}
+@keyframes bUp{from{transform:translateY(105%)}to{transform:none}}
+.b-row{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.b-lede{font-size:15px;line-height:1.45;max-width:38ch}
+.b-lede em{font:italic 17px 'Instrument Serif',serif}
+.b-pill{flex:none;font:600 11px 'Bricolage Grotesque',sans-serif;letter-spacing:.04em;text-transform:uppercase;background:var(--ink);color:var(--g);padding:9px 14px;border-radius:999px;display:inline-block}
+.b-marq{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);overflow:hidden;padding:10px 0;font:500 12px 'Bricolage Grotesque',sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.b-track{display:flex;gap:28px;width:max-content;animation:bMarq 18s linear infinite;white-space:nowrap}
+.b-track i{color:var(--ac);font-style:normal}
+@keyframes bMarq{to{transform:translateX(-50%)}}
+.b-work{padding:30px 26px 10px}
+.b-lbl{font:500 11px 'Bricolage Grotesque',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);margin-bottom:8px}
+.b-lbl span{color:var(--ac)}
+.b-list{position:relative}
+.b-item{display:grid;grid-template-columns:36px 1.2fr 1.6fr 50px;align-items:baseline;gap:14px;padding:16px 0;border-top:1px solid var(--ln);cursor:pointer}
+.b-item:last-of-type{border-bottom:1px solid var(--ln)}
+.b-item .n{font:500 11px var(--mono);color:var(--mu)}
+.b-item .t{font:800 26px/1 'Bricolage Grotesque',sans-serif;letter-spacing:-.02em;transition:color .2s,transform .3s}
+.b-item .c{font-size:12px;color:var(--mu)}
+.b-item .y{font:500 11px var(--mono);color:var(--mu);text-align:right}
+.b-item:hover .t{color:var(--ac);transform:translateX(6px)}
+.b-prev{position:absolute;left:50%;top:50%;width:210px;height:140px;border-radius:6px;pointer-events:none;opacity:0;transform:translate(-50%,-50%) rotate(-3deg) scale(.92);transition:opacity .2s,transform .25s;z-index:5;box-shadow:0 20px 40px -20px rgba(0,0,0,.45)}
+.b-prev.on{opacity:1;transform:translate(-50%,-50%) rotate(-3deg) scale(1)}
+.b-prev[data-g="1"]{background:linear-gradient(135deg,#FF7A45,#FF4A1C 60%,#B02D0C)}
+.b-prev[data-g="2"]{background:linear-gradient(135deg,#1B1B1B,#4A4A48)}
+.b-prev[data-g="3"]{background:linear-gradient(135deg,#C9C8C0,#8E8D86)}
+.b-foot{padding:36px 26px 40px;background:var(--ink);color:var(--g);margin-top:30px}
+.b-foot .b-lbl{color:rgba(241,240,235,.55)}
+.b-big{font:800 44px/1 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em}
+.b-big em{font:italic 44px 'Instrument Serif',serif;color:var(--ac)}
+/* phone B */
+.pB{padding:44px 18px 18px}
+.pB .row{display:flex;justify-content:space-between;align-items:center}
+.pB-h1{font:800 54px/.9 'Bricolage Grotesque',sans-serif;letter-spacing:-.045em;text-transform:uppercase;margin:30px 0 14px}
+.pB-h1 em{font-style:normal;color:var(--ac)}
+.pB-lede{font-size:13px;line-height:1.45;margin-bottom:14px}
+.pB-lede em{font:italic 15px 'Instrument Serif',serif}
+.pB .b-pill{align-self:flex-start}
+.pB-list{margin-top:auto;border-top:1px solid var(--ink)}
+.pB-list div{display:flex;gap:10px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--ln)}
+.pB-list .n{font:500 9px var(--mono);color:var(--mu)}
+.pB-list .t{font:800 17px 'Bricolage Grotesque',sans-serif;letter-spacing:-.02em}
+.pB-list .y{margin-left:auto;font:500 9px var(--mono);color:var(--mu)}
+
+/* ==== C: Bento Pro ==== */
+.sC,.pC{--g:#0A0A0B;--p:#131316;--ln:#232328;--tx:#F2F2F3;--mu:#8A8A93;--ac:#7A7CFF;background:var(--g);color:var(--tx);font-family:'Figtree',var(--body)}
+.c-top{display:flex;align-items:center;gap:18px;padding:14px 22px;font-size:12px;color:var(--mu)}
+.c-logo{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--ac),#3E3FA8);color:#fff;display:grid;place-items:center;font:700 11px 'Sora',sans-serif}
+.c-links{margin-left:auto}
+.c-btn{font:600 11px 'Figtree',sans-serif;color:var(--tx);border:1px solid var(--ln);padding:6px 11px;border-radius:8px;background:var(--p)}
+.c-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:150px;gap:10px;padding:6px 22px 22px}
+.c-tile{position:relative;border:1px solid var(--ln);border-radius:14px;background:var(--p);padding:14px;overflow:hidden;--x:50%;--y:50%;display:flex;flex-direction:column}
+.c-tile::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:radial-gradient(240px circle at var(--x) var(--y),color-mix(in srgb,var(--ac) 80%,transparent),transparent 60%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;opacity:0;transition:opacity .25s;pointer-events:none}
+.c-tile::after{content:"";position:absolute;inset:0;background:radial-gradient(320px circle at var(--x) var(--y),color-mix(in srgb,var(--ac) 9%,transparent),transparent 60%);opacity:0;transition:opacity .25s;pointer-events:none}
+.c-tile:hover::before,.c-tile:hover::after{opacity:1}
+.c-tile.big{grid-column:span 2;grid-row:span 2;justify-content:flex-end;gap:8px;padding:18px}
+.c-av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--ac),#2C2D7A);display:grid;place-items:center;font:700 13px 'Sora',sans-serif;color:#fff;margin-bottom:auto}
+.c-tile h1{font:700 30px/1.05 'Sora',sans-serif;letter-spacing:-.02em;margin:0}
+.c-tile p{font-size:13px;color:var(--mu);max-width:40ch}
+.c-chips{display:flex;flex-wrap:wrap;gap:5px}
+.c-chips span{font:500 10px 'DM Mono',monospace;padding:3px 7px;border-radius:5px;border:1px solid var(--ln);color:var(--mu);background:var(--g)}
+.c-link{font:600 12px 'Figtree',sans-serif;color:var(--tx);margin-top:4px}
+.c-lbl{font:500 10px 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--mu)}
+.c-lbl em{font-style:normal;color:var(--ac);text-transform:none;letter-spacing:0}
+.c-clock{font:500 30px/1 'DM Mono',monospace;letter-spacing:-.02em;margin-top:12px;font-variant-numeric:tabular-nums}
+.c-sub{font-size:11px;color:var(--mu);margin-top:6px}
+.c-status{margin-top:auto;font:600 11px 'Figtree',sans-serif;display:flex;align-items:center;gap:6px}
+.c-status i{width:7px;height:7px;border-radius:50%;background:#4ADE80;box-shadow:0 0 8px #4ADE80;display:block}
+.c-heat{display:grid;grid-template-columns:repeat(20,1fr);gap:3px;margin:12px 0 4px}
+.c-heat i{aspect-ratio:1;border-radius:2px;background:var(--ln);display:block}
+.c-heat .l1{background:color-mix(in srgb,var(--ac) 28%,var(--ln))}
+.c-heat .l2{background:color-mix(in srgb,var(--ac) 52%,var(--ln))}
+.c-heat .l3{background:color-mix(in srgb,var(--ac) 80%,var(--ln))}
+.c-heat .l4{background:var(--ac)}
+.c-stack{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}
+.c-stack span{aspect-ratio:1;display:grid;place-items:center;border:1px solid var(--ln);border-radius:8px;font:600 11px 'DM Mono',monospace;color:var(--mu);background:var(--g)}
+.c-tile.cta b{font:700 16px/1.2 'Sora',sans-serif;margin-top:8px;letter-spacing:-.01em}
+.c-mag{align-self:flex-start;margin-top:auto;font:600 12px 'Figtree',sans-serif;background:var(--tx);color:var(--g);padding:8px 12px;border-radius:8px;transition:transform .15s ease-out;will-change:transform;display:inline-block}
+.c-work{padding:0 22px 26px}
+.c-wh{display:flex;align-items:center;justify-content:space-between;margin:8px 0 12px}
+.c-wh h2{font:700 18px 'Sora',sans-serif;letter-spacing:-.01em}
+.c-filters{display:flex;gap:4px}
+.c-filters span{font:500 11px 'Figtree',sans-serif;padding:5px 10px;border-radius:999px;color:var(--mu);border:1px solid transparent}
+.c-filters .on{color:var(--tx);border-color:var(--ln);background:var(--p)}
+.c-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.c-tile.card{gap:6px}
+.c-tile.card b{font:600 14px 'Sora',sans-serif}
+.c-tile.card p{font-size:12px}
+.c-shot{height:112px;border-radius:8px;position:relative;overflow:hidden;margin-bottom:6px}
+.c-shot::after{content:"";position:absolute;left:12px;right:12px;bottom:12px;height:26px;border-radius:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08)}
+.c-shot.g1{background:linear-gradient(135deg,#2A2C7A,#7A7CFF 60%,#B7B8FF)}
+.c-shot.g2{background:linear-gradient(135deg,#1C1C22,#3A3A46)}
+.c-shot.g3{background:linear-gradient(135deg,#17303A,#2E6F82)}
+.c-shot.g4{background:linear-gradient(135deg,#2E2036,#6B4A80)}
+.c-feat{position:absolute;top:10px;left:10px;font:600 9px 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;background:var(--ac);color:#fff;padding:3px 7px;border-radius:5px;z-index:1}
+/* phone C */
+.pC{padding:44px 14px 16px;gap:8px}
+.pC .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;font-size:11px;color:var(--mu)}
+.pC-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pC .c-tile{padding:12px;border-radius:12px}
+.pC .c-tile.big{grid-column:span 2;grid-row:auto;min-height:170px;padding:14px}
+.pC .c-tile h1{font-size:22px}
+.pC .c-tile p{font-size:11px}
+.pC .c-av{width:34px;height:34px;font-size:11px}
+.pC .c-clock{font-size:22px;margin-top:8px}
+.pC .c-heat{grid-template-columns:repeat(14,1fr);margin:8px 0 2px}
+.pC .c-stack{grid-template-columns:repeat(3,1fr);gap:4px;margin-top:6px}
+.pC .c-stack span{font-size:9px;border-radius:6px}
+.pC .c-tile.cta b{font-size:13px}
+.pC .c-mag{font-size:11px;padding:6px 10px}
+
+/* ==== D: Monolith ==== */
+.sD,.pD{--g:#F8F8FA;--ink:#0B0B0C;--mu:#8A8A8F;--ln:#E6E6EA;background:var(--g);color:var(--ink);font-family:'Outfit',var(--body)}
+.d-top{display:flex;justify-content:space-between;padding:18px 28px;font:500 10px 'Outfit',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--mu);position:relative;z-index:3}
+.d-top span:first-child{color:var(--ink)}
+.d-top i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--ink);margin-left:6px;vertical-align:middle}
+.d-hero{position:relative;height:460px}
+.d-copy{position:absolute;left:28px;bottom:40px;z-index:2;max-width:420px}
+.d-h1{font:300 54px/1.02 'Outfit',sans-serif;letter-spacing:-.03em;margin:0 0 16px;animation:dBlur 1.2s cubic-bezier(.2,.7,.1,1) both}
+.d-sub{font:300 14px/1.5 'Outfit',sans-serif;color:var(--mu);max-width:36ch;animation:dBlur 1.2s .15s cubic-bezier(.2,.7,.1,1) both}
+@keyframes dBlur{from{opacity:0;filter:blur(14px);transform:translateY(10px)}to{opacity:1;filter:blur(0);transform:none}}
+.d-scroll{margin-top:26px;font:500 9px 'Outfit',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--mu);display:flex;align-items:center;gap:10px}
+.d-scroll i{width:1px;height:28px;background:var(--ln);position:relative;overflow:hidden;display:block}
+.d-scroll i::after{content:"";position:absolute;left:0;top:-100%;width:1px;height:100%;background:var(--ink);animation:dLine 1.8s ease-in-out infinite}
+@keyframes dLine{to{top:100%}}
+.d-gl{position:absolute;right:28px;top:-6px;width:460px;height:460px;z-index:1;will-change:transform}
+.d-gl canvas{display:block;width:100%!important;height:100%!important}
+.d-gl.nogl{background:radial-gradient(circle at 50% 50%,#d8d8de 0,#9a9aa2 40%,transparent 42%)}
+.d-work{padding:16px 28px 0}
+.d-lbl{font:500 9px 'Outfit',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--mu);margin-bottom:14px}
+.d-row{margin-bottom:26px;cursor:pointer}
+.d-img{height:250px;border-radius:4px;overflow:hidden;transition:transform .6s cubic-bezier(.2,.7,.1,1);position:relative}
+.d-img::after{content:"";position:absolute;left:12%;right:12%;top:18%;bottom:0;border-radius:10px 10px 0 0;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.7);border-bottom:0}
+.d-img.i1{background:linear-gradient(120deg,#E9E9EE,#CFCFD6 45%,#F3F3F6)}
+.d-img.i2{background:linear-gradient(120deg,#DEDEE3,#B9B9C2 50%,#EDEDF1)}
+.d-row:hover .d-img{transform:scale(.985)}
+.d-meta{display:flex;align-items:baseline;gap:18px;padding:12px 0;border-bottom:1px solid var(--ln)}
+.d-t{font:400 22px 'Outfit',sans-serif;letter-spacing:-.02em}
+.d-c{font:300 12px 'Outfit',sans-serif;color:var(--mu)}
+.d-y{margin-left:auto;font:300 12px 'Outfit',sans-serif;color:var(--mu)}
+.d-foot{padding:40px 28px 48px}
+.d-big{font:200 44px/1.05 'Outfit',sans-serif;letter-spacing:-.03em}
+/* phone D */
+.pD{padding:44px 20px 22px}
+.pD .row{display:flex;justify-content:space-between;font:500 9px 'Outfit',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--mu)}
+.pD .row span:first-child{color:var(--ink)}
+.pD-orb{width:150px;height:150px;border-radius:50%;margin:26px auto 6px;background:
+  radial-gradient(circle at 32% 28%,rgba(255,255,255,.95) 0,rgba(255,255,255,.6) 12%,rgba(255,255,255,0) 32%),
+  radial-gradient(circle at 70% 80%,rgba(255,255,255,.35) 0,rgba(255,255,255,0) 30%),
+  linear-gradient(180deg,#d7d7dc 0%,#9a9aa2 45%,#2a2a30 52%,#6c6c74 70%,#c9c9cf 100%);
+  box-shadow:0 30px 50px -25px rgba(0,0,0,.35),inset 0 -10px 30px rgba(0,0,0,.25)}
+.pD h1{font:300 30px/1.05 'Outfit',sans-serif;letter-spacing:-.03em;margin-top:auto}
+.pD p{font:300 12px/1.5 'Outfit',sans-serif;color:var(--mu);margin:10px 0 18px}
+
+/* compare */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:rgba(12,16,32,.4)}
+table{border-collapse:collapse;width:100%;min-width:820px;font-size:.9rem}
+th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font:500 .7rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--bg2)}
+th b{display:block;font:800 1.1rem var(--display);letter-spacing:0;text-transform:none;color:var(--text);margin-bottom:2px}
+td:first-child{color:var(--muted);font-size:.82rem;white-space:nowrap}
+td{color:var(--text)}
+td small{display:block;color:var(--muted);font-size:.8rem}
+
+.next{margin-top:34px;padding:26px 28px;border-radius:14px;border:1px solid var(--line2);background:linear-gradient(135deg,color-mix(in srgb,var(--a) 10%,var(--bg2)),color-mix(in srgb,var(--b) 10%,var(--bg2)))}
+.next h3{font-size:1.25rem;margin-bottom:8px}
+.next p{color:var(--muted);max-width:62ch}
+.next p+p{margin-top:8px}
+.next b{color:var(--text)}
+footer{padding:36px 0 56px;font:400 .72rem var(--mono);color:var(--dim)}
+
+@media (max-width:900px){
+  .stage{grid-template-columns:1fr}
+  .dir-h{grid-template-columns:1fr}
+  .moves{grid-template-columns:1fr}
+  .dir-id{grid-template-columns:48px 1fr;gap:14px}
+  .letter{width:48px;height:48px;font-size:1.4rem;border-radius:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">ARYAN<b>.</b>DIRECTIONS</div>
+    <nav>
+      <a href="#a">A · Cyber 3D</a>
+      <a href="#b">B · Studio</a>
+      <a href="#c">C · Bento</a>
+      <a href="#d">D · Monolith</a>
+      <a href="#compare">Compare</a>
+      <a href="#decide">Decide</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section class="intro">
+  <p class="eyebrow">Alternatives · Working samples · 12 Sep 2026</p>
+  <h1>Same story, <em>four looks</em>.</h1>
+  <p class="lede">The Blueprint page showed the neon-3D direction. Here are three more, each a real working sample: a light magazine-style studio look, a dark product-grade bento look, and a near-silent minimal look built around one chrome object. Scroll inside each frame — they're small versions of the real site. Pick one, or tell me what to mix.</p>
+  <div class="chips">
+    <span class="chip">3 new samples <b>all interactive</b></span>
+    <span class="chip">Scroll <b>inside each frame</b></span>
+    <span class="chip">Hosting plan <b>unchanged, ₹0</b></span>
+  </div>
+</section>
+
+<section class="sec" id="a">
+  <div class="dir-h">
+    <div class="dir-id">
+      <div class="letter A">A</div>
+      <div><span class="k">Direction A · already built</span><h2>Cyber 3D</h2><p class="thesis">Dark, neon, a wireframe shape and particles that follow the cursor. The loudest of the four — it says "I can do anything with a browser." Its working sample, with the three colour worlds, lives on the <a href="https://claude.ai/code/artifact/81b85fd8-1aea-4a28-aba0-e142bdf2ab7f" target="_blank" rel="noopener">Blueprint page</a>.</p></div>
+    </div>
+    <div class="dir-meta">
+      <div class="meta-row"><span class="lbl">Palette</span><div class="sw"><i style="background:#070A14"></i><i style="background:#38E1FF"></i><i style="background:#B26BFF"></i><i style="background:#E7EAF6"></i></div></div>
+      <div class="meta-row"><span class="lbl">Type</span><div class="spec"><span style="font:800 1rem 'Syne'">Syne</span><span style="font:500 1rem 'Manrope'">Manrope</span><span style="font:400 .9rem 'JetBrains Mono'">JetBrains Mono</span></div></div>
+      <div class="meta-row"><span class="lbl">Feels like</span><div class="tags"><span>sci-fi</span><span>startup</span><span>show-off</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ B ============ -->
+<section class="sec" id="b">
+  <div class="dir-h">
+    <div class="dir-id">
+      <div class="letter B">B</div>
+      <div><span class="k">Direction B · new</span><h2>Studio Editorial</h2><p class="thesis">Typography is the hero. Your name at poster size, a magazine-style index of your work, and images that appear only when you ask for them. Reads like a design studio's site.</p></div>
+    </div>
+    <div class="dir-meta">
+      <div class="meta-row"><span class="lbl">Palette</span><div class="sw"><i style="background:#F1F0EB"></i><i style="background:#0F0F0F"></i><i style="background:#FF4A1C"></i><i style="background:#6E6E6A"></i></div></div>
+      <div class="meta-row"><span class="lbl">Type</span><div class="spec"><span style="font:800 1.05rem 'Bricolage Grotesque'">Bricolage Grotesque</span><span style="font:italic 1.1rem 'Instrument Serif'">Instrument Serif</span><span style="font:500 .95rem 'Instrument Sans'">Instrument Sans</span></div></div>
+      <div class="meta-row"><span class="lbl">Feels like</span><div class="tags"><span>design studio</span><span>magazine</span><span>confident</span></div></div>
+    </div>
+  </div>
+
+  <div class="stage">
+    <div class="desk-wrap">
+      <div class="desk">
+        <div class="chrome"><i></i><i></i><i></i><span>aryanarora.netlify.app</span></div>
+        <div class="site sB">
+          <div class="b-top"><span class="b-name">Aryan Arora</span><span class="b-role">Full-stack developer</span><span class="b-links">Work<i>/</i>About<i>/</i>Contact</span><span class="b-clock" data-clock>--:--</span></div>
+          <div class="b-hero">
+            <h1 class="b-h1"><span class="ln"><span>Aryan</span></span><span class="ln"><span>Arora<em>.</em></span></span></h1>
+            <div class="b-row">
+              <p class="b-lede">Full-stack developer crafting <em>web &amp; Android</em> products people rely on. Currently shipping Protein Plate 2.0.</p>
+              <span class="b-pill">Available for work ↗</span>
+            </div>
+          </div>
+          <div class="b-marq"><div class="b-track">
+            <span>Selected work 2024 — 2026</span><i>✦</i><span>Protein Plate 2.0</span><i>✦</i><span>React · Firebase · Expo</span><i>✦</i><span>Web &amp; Android</span><i>✦</i>
+            <span>Selected work 2024 — 2026</span><i>✦</i><span>Protein Plate 2.0</span><i>✦</i><span>React · Firebase · Expo</span><i>✦</i><span>Web &amp; Android</span><i>✦</i>
+          </div></div>
+          <div class="b-work">
+            <div class="b-lbl">Selected work <span>(03)</span></div>
+            <div class="b-list" data-list>
+              <div class="b-item" data-grad="1"><span class="n">01</span><span class="t">Protein Plate 2.0</span><span class="c">Food-delivery platform · web, admin, Android</span><span class="y">2026</span></div>
+              <div class="b-item" data-grad="2"><span class="n">02</span><span class="t">Your project</span><span class="c">Sample row — replaced with your list</span><span class="y">2025</span></div>
+              <div class="b-item" data-grad="3"><span class="n">03</span><span class="t">Your project</span><span class="c">Sample row</span><span class="y">2024</span></div>
+              <div class="b-prev" data-prev data-g="1"></div>
+            </div>
+          </div>
+          <div class="b-foot"><div class="b-lbl">Next</div><div class="b-big">Let's make <em>something</em> ↗</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="ph pB">
+        <div class="row"><span class="b-name">Aryan Arora</span><span class="b-clock" data-clock>--:--</span></div>
+        <div class="pB-h1">Aryan<br>Arora<em>.</em></div>
+        <p class="pB-lede">Full-stack developer crafting <em>web &amp; Android</em> products people rely on.</p>
+        <span class="b-pill">Available ↗</span>
+        <div class="pB-list">
+          <div><span class="n">01</span><span class="t">Protein Plate 2.0</span><span class="y">2026</span></div>
+          <div><span class="n">02</span><span class="t">Your project</span><span class="y">2025</span></div>
+          <div><span class="n">03</span><span class="t">Your project</span><span class="y">2024</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hint"><b>Try:</b> <span>scroll inside the frame</span><span>hover the project rows</span><span>the clock is real IST</span></div>
+
+  <div class="moves">
+    <div><span class="eyebrow">Signature moves</span><ul><li>Your name reveals line by line the moment the page opens.</li><li>A strip of text that never stops moving — the "studio" tell.</li><li>Hover a project row: a preview image follows your cursor.</li><li>The page ends in a black band with one big invitation.</li></ul></div>
+    <div><span class="eyebrow ok">Choose this if</span><p>You want to read as a designer-developer or freelancer, clients are your audience, and you'll have good screenshots of your work.</p></div>
+    <div><span class="eyebrow warn">Watch out</span><p>Big type needs short project names. It lives or dies on image quality. The least "techy" of the four.</p></div>
+  </div>
+</section>
+
+<!-- ============ C ============ -->
+<section class="sec" id="c">
+  <div class="dir-h">
+    <div class="dir-id">
+      <div class="letter C">C</div>
+      <div><span class="k">Direction C · new</span><h2>Bento Pro</h2><p class="thesis">The look of the products engineers admire — Linear, Vercel, Raycast. A grid of live tiles instead of a headline, and a border glow that follows your cursor across every tile.</p></div>
+    </div>
+    <div class="dir-meta">
+      <div class="meta-row"><span class="lbl">Palette</span><div class="sw"><i style="background:#0A0A0B"></i><i style="background:#131316"></i><i style="background:#7A7CFF"></i><i style="background:#F2F2F3"></i></div></div>
+      <div class="meta-row"><span class="lbl">Type</span><div class="spec"><span style="font:700 1rem 'Sora'">Sora</span><span style="font:500 .95rem 'Figtree'">Figtree</span><span style="font:400 .9rem 'DM Mono'">DM Mono</span></div></div>
+      <div class="meta-row"><span class="lbl">Feels like</span><div class="tags"><span>product company</span><span>senior engineer</span><span>precise</span></div></div>
+    </div>
+  </div>
+
+  <div class="stage">
+    <div class="desk-wrap">
+      <div class="desk">
+        <div class="chrome"><i></i><i></i><i></i><span>aryanarora.netlify.app</span></div>
+        <div class="site sC">
+          <div class="c-top"><span class="c-logo">aa</span><span class="c-links">Work · About · Notes</span><span class="c-btn">Book a call</span></div>
+          <div class="c-grid" data-glow>
+            <div class="c-tile big"><div class="c-av">AA</div><h1>Aryan Arora</h1><p>Full-stack developer building web &amp; Android products. Currently shipping Protein Plate 2.0.</p><div class="c-chips"><span>React</span><span>TypeScript</span><span>Firebase</span><span>Expo</span><span>Node</span></div><span class="c-link">View work →</span></div>
+            <div class="c-tile"><span class="c-lbl">Now</span><div class="c-clock" data-clock>--:--</div><div class="c-sub">India · IST</div><div class="c-status"><i></i>Open to work</div></div>
+            <div class="c-tile"><span class="c-lbl">GitHub activity <em>· sample</em></span><div class="c-heat" data-heat="20"></div><div class="c-sub">Last 20 weeks</div></div>
+            <div class="c-tile"><span class="c-lbl">Stack</span><div class="c-stack"><span>Re</span><span>TS</span><span>Fb</span><span>Nd</span><span>Ex</span><span>Tw</span></div></div>
+            <div class="c-tile cta"><span class="c-lbl">Contact</span><b>Let's build something.</b><span class="c-mag" data-mag>Say hello ↗</span></div>
+          </div>
+          <div class="c-work">
+            <div class="c-wh"><h2>Projects</h2><div class="c-filters"><span class="on">All</span><span>Web</span><span>Android</span><span>Backend</span></div></div>
+            <div class="c-cards" data-glow>
+              <div class="c-tile card"><div class="c-shot g1"><span class="c-feat">Featured</span></div><b>Protein Plate 2.0</b><p>Customer site, admin panel, Android apps, UPI payments. Live and taking orders.</p><div class="c-chips"><span>React</span><span>Firebase</span><span>Expo</span></div></div>
+              <div class="c-tile card"><div class="c-shot g2"></div><b>Your project 02</b><p>Sample card — replaced with yours.</p><div class="c-chips"><span>Android</span></div></div>
+              <div class="c-tile card"><div class="c-shot g3"></div><b>Your project 03</b><p>Sample card.</p><div class="c-chips"><span>Web</span></div></div>
+              <div class="c-tile card"><div class="c-shot g4"></div><b>Your project 04</b><p>Sample card.</p><div class="c-chips"><span>Backend</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="ph pC">
+        <div class="row"><span class="c-logo">aa</span><span>Work · About</span></div>
+        <div class="pC-grid" data-glow>
+          <div class="c-tile big"><div class="c-av">AA</div><h1>Aryan Arora</h1><p>Full-stack developer. Web &amp; Android.</p><div class="c-chips"><span>React</span><span>Firebase</span><span>Expo</span></div></div>
+          <div class="c-tile"><span class="c-lbl">Now</span><div class="c-clock" data-clock>--:--</div><div class="c-sub">IST</div></div>
+          <div class="c-tile"><span class="c-lbl">Stack</span><div class="c-stack"><span>Re</span><span>TS</span><span>Fb</span><span>Nd</span><span>Ex</span><span>Tw</span></div></div>
+          <div class="c-tile big"><span class="c-lbl">GitHub <em>· sample</em></span><div class="c-heat" data-heat="14"></div></div>
+          <div class="c-tile big cta"><span class="c-lbl">Contact</span><b>Let's build something.</b><span class="c-mag">Say hello ↗</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hint"><b>Try:</b> <span>move the cursor across the tiles</span><span>hover "Say hello" — it follows you</span><span>scroll to the projects</span></div>
+
+  <div class="moves">
+    <div><span class="eyebrow">Signature moves</span><ul><li>A bento grid of live tiles — real IST clock, your GitHub activity, your stack.</li><li>A thin border glow that tracks the cursor on every tile.</li><li>Magnetic buttons that lean toward the cursor.</li><li>Project filters (Web / Android / Backend) with cards that share the glow.</li></ul></div>
+    <div><span class="eyebrow ok">Choose this if</span><p>You're aiming at product companies and recruiters who skim. It says "senior engineer" in one screen, and it's the most familiar to tech people.</p></div>
+    <div><span class="eyebrow warn">Watch out</span><p>Live tiles are only impressive when they're real — we'd connect your actual GitHub. It's also the most "expected" look in tech right now.</p></div>
+  </div>
+</section>
+
+<!-- ============ D ============ -->
+<section class="sec" id="d">
+  <div class="dir-h">
+    <div class="dir-id">
+      <div class="letter D">D</div>
+      <div><span class="k">Direction D · new</span><h2>Monolith</h2><p class="thesis">Almost nothing on the page, so the one thing there — a liquid chrome object that breathes — carries everything. Confidence through restraint. Looks expensive, ages the best.</p></div>
+    </div>
+    <div class="dir-meta">
+      <div class="meta-row"><span class="lbl">Palette</span><div class="sw"><i style="background:#F8F8FA"></i><i style="background:#0B0B0C"></i><i style="background:linear-gradient(135deg,#e6e6ea,#6c6c74)"></i><i style="background:#8A8A8F"></i></div></div>
+      <div class="meta-row"><span class="lbl">Type</span><div class="spec"><span style="font:200 1.15rem 'Outfit'">Outfit Thin</span><span style="font:300 1rem 'Outfit'">Outfit Light</span><span style="font:500 .8rem 'Outfit';letter-spacing:.16em;text-transform:uppercase">Outfit caps</span></div></div>
+      <div class="meta-row"><span class="lbl">Feels like</span><div class="tags"><span>luxury</span><span>calm</span><span>agency</span></div></div>
+    </div>
+  </div>
+
+  <div class="stage">
+    <div class="desk-wrap">
+      <div class="desk">
+        <div class="chrome"><i></i><i></i><i></i><span>aryanarora.netlify.app</span></div>
+        <div class="site sD" id="siteD">
+          <div class="d-top"><span>Aryan Arora</span><span>Full-stack developer</span><span>Menu<i></i></span></div>
+          <div class="d-hero">
+            <div class="d-copy">
+              <h1 class="d-h1">Software that<br>earns trust.</h1>
+              <p class="d-sub">Aryan Arora builds web and Android products, and the systems behind them. Latest: Protein Plate 2.0.</p>
+              <div class="d-scroll"><i></i>Scroll</div>
+            </div>
+            <div class="d-gl" id="dgl"></div>
+          </div>
+          <div class="d-work">
+            <div class="d-lbl">Selected work</div>
+            <div class="d-row"><div class="d-img i1"></div><div class="d-meta"><span class="d-t">Protein Plate 2.0</span><span class="d-c">Food-delivery platform</span><span class="d-y">2026</span></div></div>
+            <div class="d-row"><div class="d-img i2"></div><div class="d-meta"><span class="d-t">Your project</span><span class="d-c">Sample</span><span class="d-y">2025</span></div></div>
+          </div>
+          <div class="d-foot"><div class="d-lbl">Contact</div><div class="d-big">Let's work together.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="ph pD">
+        <div class="row"><span>Aryan Arora</span><span>Menu</span></div>
+        <div class="pD-orb"></div>
+        <h1>Software that<br>earns trust.</h1>
+        <p>Web and Android products, and the systems behind them.</p>
+        <div class="d-scroll"><i></i>Scroll</div>
+      </div>
+    </div>
+  </div>
+  <div class="hint"><b>Try:</b> <span>move the cursor — the object follows</span><span>scroll — it drifts slower than the page</span><span>hover the project images</span></div>
+
+  <div class="moves">
+    <div><span class="eyebrow">Signature moves</span><ul><li>A chrome object that breathes and turns toward the cursor — real 3D, drawn to look like polished metal.</li><li>Text that sharpens out of a blur when the page opens.</li><li>Full-width project images with a slow, quiet zoom.</li><li>White space treated as a feature, not a gap.</li></ul></div>
+    <div><span class="eyebrow ok">Choose this if</span><p>You want to look expensive and calm. Suits founders, agencies and anyone whose work speaks for itself. Of the four, this one will still look current in five years.</p></div>
+    <div><span class="eyebrow warn">Watch out</span><p>Needs discipline — few sections, short words. Less "wow" on a phone, where the object becomes a still sphere. Hardest to fill if you have many small projects.</p></div>
+  </div>
+</section>
+
+<section class="sec" id="compare">
+  <div class="dir-h" style="margin-bottom:22px">
+    <div class="dir-id" style="grid-template-columns:1fr">
+      <div><span class="k">Side by side</span><h2>How they compare.</h2><p class="thesis">Same content, same hosting, same phone-first build. What changes is the first impression and who it's tuned for.</p></div>
+    </div>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th></th><th><b>A</b>Cyber 3D</th><th><b>B</b>Studio Editorial</th><th><b>C</b>Bento Pro</th><th><b>D</b>Monolith</th></tr></thead>
+      <tbody>
+        <tr><td>First impression</td><td>"Whoa."</td><td>"A design studio."</td><td>"A senior engineer."</td><td>"Expensive and calm."</td></tr>
+        <tr><td>Ground</td><td>Dark, neon accents</td><td>Light, black + orange</td><td>Dark, one indigo accent</td><td>Light, chrome greys</td></tr>
+        <tr><td>Motion</td><td>Heavy: 3D scene, particles, glow</td><td>Typographic: reveals, marquee, hover previews</td><td>Micro: cursor glow, live tiles, magnetic buttons</td><td>Minimal: blur-in text, one breathing object</td></tr>
+        <tr><td>3D</td><td>Full scene</td><td>None</td><td>None</td><td>One chrome object</td></tr>
+        <tr><td>Best for</td><td>Startups, creative roles, standing out in a stack of links</td><td>Freelance clients, design-aware teams</td><td>Product companies, recruiters who skim</td><td>Founders, agencies; anyone playing the long game</td></tr>
+        <tr><td>On a phone</td><td>Good<small>lighter effects, aurora instead of 3D</small></td><td>Excellent<small>big type scales beautifully</small></td><td>Excellent<small>tiles stack into two columns</small></td><td>Good<small>object becomes a still sphere</small></td></tr>
+        <tr><td>Build effort</td><td>≈ 6 sessions</td><td>≈ 5 sessions</td><td>≈ 5 sessions<small>+ connecting real GitHub data</small></td><td>≈ 4–5 sessions</td></tr>
+        <tr><td>Risk</td><td>Can tip into "template" if overdone; heaviest on old laptops</td><td>Needs strong screenshots; short names only</td><td>Most common look in tech today</td><td>Needs restraint; fewest places to put things</td></tr>
+        <tr><td>Hosting</td><td>₹0, Netlify</td><td>₹0, Netlify</td><td>₹0, Netlify</td><td>₹0, Netlify</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="sec" id="decide">
+  <div class="dir-id" style="grid-template-columns:1fr">
+    <div><span class="k">Your call</span><h2>How to decide.</h2><p class="thesis">Open this page on your phone too — every sample is built for it. Then send me one letter, or a mix.</p></div>
+  </div>
+  <div class="next">
+    <h3>Reply with a letter — or a recipe</h3>
+    <p>Mixing is allowed and often the best answer. Examples that work well together: <b>C's bento hero with A's colour worlds</b>, <b>B's project index inside D's calm layout</b>, or <b>D's chrome object as the hero of C</b>.</p>
+    <p>If you want my honest pick for "modern, aesthetic, professional": <b>C</b> if you're going after jobs at product companies, <b>B</b> if you're going after clients. <b>D</b> if you want the one people remember quietly. <b>A</b> if you want the one people remember loudly.</p>
+  </div>
+</section>
+
+<footer>Prepared 12 Sep 2026 · All names, project rows and activity data in the samples are placeholders except Protein Plate 2.0 · Clocks show real Indian Standard Time</footer>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  var reduce = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  /* scale every desktop frame to the width it has */
+  document.querySelectorAll('.desk-wrap').forEach(function(dw){
+    var dk=dw.querySelector('.desk');
+    function fit(){
+      var s=Math.min(1, dw.clientWidth/820);
+      dk.style.transform='scale('+s+')'; dk.dataset.scale=s;
+      dw.style.height=Math.round(dk.offsetHeight*s)+'px';
+    }
+    if(window.ResizeObserver){ new ResizeObserver(fit).observe(dw); }
+    window.addEventListener('resize',fit); fit();
+  });
+  function scaleOf(el){ var d=el.closest('.desk'); return d?parseFloat(d.dataset.scale||'1'):1; }
+  function local(e,el){ var r=el.getBoundingClientRect(), s=scaleOf(el); return {x:(e.clientX-r.left)/s, y:(e.clientY-r.top)/s}; }
+
+  /* real IST clocks */
+  function tickClock(){
+    var t;
+    try{ t=new Date().toLocaleTimeString('en-IN',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit',hour12:false}); }
+    catch(e){ t=new Date().toTimeString().slice(0,5); }
+    document.querySelectorAll('[data-clock]').forEach(function(el){ el.textContent=t; });
+  }
+  tickClock(); setInterval(tickClock,15000);
+
+  /* B: preview image follows the cursor over the work index */
+  document.querySelectorAll('[data-list]').forEach(function(list){
+    var prev=list.querySelector('[data-prev]');
+    list.addEventListener('pointermove',function(e){ var p=local(e,list); prev.style.left=p.x+'px'; prev.style.top=p.y+'px'; });
+    list.querySelectorAll('.b-item').forEach(function(it){
+      it.addEventListener('pointerenter',function(){ prev.dataset.g=it.dataset.grad; prev.classList.add('on'); });
+    });
+    list.addEventListener('pointerleave',function(){ prev.classList.remove('on'); });
+  });
+
+  /* C: cursor-tracking glow, activity heatmap, magnetic button */
+  document.querySelectorAll('[data-glow]').forEach(function(grid){
+    var tiles=grid.querySelectorAll('.c-tile');
+    grid.addEventListener('pointermove',function(e){
+      tiles.forEach(function(t){ var p=local(e,t); t.style.setProperty('--x',p.x+'px'); t.style.setProperty('--y',p.y+'px'); });
+    });
+  });
+  document.querySelectorAll('[data-heat]').forEach(function(h){
+    var cols=parseInt(h.dataset.heat||'20',10), html='';
+    for(var i=0;i<cols*7;i++){ var r=Math.random(); var l=r<.42?0:r<.65?1:r<.82?2:r<.94?3:4; html+='<i class="l'+l+'"></i>'; }
+    h.innerHTML=html;
+  });
+  document.querySelectorAll('[data-mag]').forEach(function(b){
+    var tile=b.closest('.c-tile');
+    tile.addEventListener('pointermove',function(e){
+      var r=b.getBoundingClientRect(), s=scaleOf(b);
+      var dx=(e.clientX-(r.left+r.width/2))/s, dy=(e.clientY-(r.top+r.height/2))/s;
+      b.style.transform='translate('+(dx*.3)+'px,'+(dy*.3)+'px)';
+    });
+    tile.addEventListener('pointerleave',function(){ b.style.transform=''; });
+  });
+
+  /* D: liquid chrome object (Three.js, matcap drawn on a canvas so no image is needed) */
+  var dh=document.getElementById('dgl'), siteD=document.getElementById('siteD');
+  if(dh && window.THREE){
+    try{
+      var W=dh.clientWidth||460, H=dh.clientHeight||460;
+      var rd=new THREE.WebGLRenderer({antialias:true,alpha:true});
+      rd.setPixelRatio(Math.min(window.devicePixelRatio||1,2)); rd.setSize(W,H);
+      dh.appendChild(rd.domElement);
+      var sc=new THREE.Scene(), cm=new THREE.PerspectiveCamera(35,W/H,.1,50); cm.position.z=5;
+
+      function makeMatcap(){
+        var c=document.createElement('canvas'); c.width=c.height=256; var x=c.getContext('2d');
+        var g=x.createRadialGradient(128,128,10,128,128,128);
+        g.addColorStop(0,'#dcdce0'); g.addColorStop(.5,'#8e8e95'); g.addColorStop(.86,'#2a2a30'); g.addColorStop(1,'#08080a');
+        x.fillStyle=g; x.fillRect(0,0,256,256);
+        var h=x.createLinearGradient(0,96,0,176);
+        h.addColorStop(0,'rgba(255,255,255,0)'); h.addColorStop(.45,'rgba(18,18,22,.6)'); h.addColorStop(.5,'rgba(245,245,248,.5)'); h.addColorStop(1,'rgba(255,255,255,0)');
+        x.fillStyle=h; x.fillRect(0,0,256,256);
+        var s=x.createRadialGradient(86,76,4,86,76,72);
+        s.addColorStop(0,'rgba(255,255,255,1)'); s.addColorStop(.3,'rgba(255,255,255,.55)'); s.addColorStop(1,'rgba(255,255,255,0)');
+        x.fillStyle=s; x.fillRect(0,0,256,256);
+        var rl=x.createRadialGradient(196,204,8,196,204,84);
+        rl.addColorStop(0,'rgba(255,255,255,.4)'); rl.addColorStop(1,'rgba(255,255,255,0)');
+        x.fillStyle=rl; x.fillRect(0,0,256,256);
+        return new THREE.CanvasTexture(c);
+      }
+      /* merge the icosahedron's duplicated vertices so normals stay smooth (no seams) */
+      function indexed(g){
+        var p=g.attributes.position.array, map={}, verts=[], idx=[];
+        for(var i=0;i<p.length;i+=3){
+          var k=p[i].toFixed(4)+','+p[i+1].toFixed(4)+','+p[i+2].toFixed(4), j=map[k];
+          if(j===undefined){ j=verts.length/3; map[k]=j; verts.push(p[i],p[i+1],p[i+2]); }
+          idx.push(j);
+        }
+        var ng=new THREE.BufferGeometry();
+        ng.setAttribute('position',new THREE.Float32BufferAttribute(verts,3));
+        ng.setIndex(idx); ng.computeVertexNormals(); return ng;
+      }
+      var geo=indexed(new THREE.IcosahedronGeometry(1.15,5));
+      var base=geo.attributes.position.array.slice();
+      var blob=new THREE.Mesh(geo,new THREE.MeshMatcapMaterial({matcap:makeMatcap()}));
+      sc.add(blob);
+      var tx=0,ty=0,mx=0,my=0;
+      siteD.addEventListener('pointermove',function(e){
+        var r=siteD.getBoundingClientRect();
+        tx=((e.clientX-r.left)/r.width-.5)*2; ty=((e.clientY-r.top)/r.height-.5)*2;
+        if(reduce){ mx=tx; my=ty; drawD(0); }
+      });
+      siteD.addEventListener('pointerleave',function(){ tx=0; ty=0; });
+      function morph(t){
+        var p=geo.attributes.position.array;
+        for(var i=0;i<p.length;i+=3){
+          var x=base[i], y=base[i+1], z=base[i+2];
+          var d=1+.13*Math.sin(2.0*x+t)*Math.sin(1.7*y-.7*t)+.07*Math.sin(2.6*z+1.3*t+x);
+          p[i]=x*d; p[i+1]=y*d; p[i+2]=z*d;
+        }
+        geo.attributes.position.needsUpdate=true; geo.computeVertexNormals();
+      }
+      function drawD(ms){
+        var t=ms*.0009;
+        mx+=(tx-mx)*.05; my+=(ty-my)*.05;
+        morph(t);
+        blob.rotation.y=t*.25+mx*.5; blob.rotation.x=my*.35;
+        blob.position.x=mx*.25; blob.position.y=-my*.2;
+        rd.render(sc,cm);
+      }
+      function loopD(ms){ drawD(ms); requestAnimationFrame(loopD); }
+      if(reduce){ drawD(0); } else { requestAnimationFrame(loopD); }
+      if(window.ResizeObserver){
+        new ResizeObserver(function(){ W=dh.clientWidth; H=dh.clientHeight; if(!W||!H) return; rd.setSize(W,H); cm.aspect=W/H; cm.updateProjectionMatrix(); if(reduce) drawD(0); }).observe(dh);
+      }
+    }catch(e){ dh.classList.add('nogl'); }
+  } else if(dh){ dh.classList.add('nogl'); }
+  /* D: the object drifts slower than the page */
+  if(siteD && dh){ siteD.addEventListener('scroll',function(){ dh.style.transform='translateY('+(siteD.scrollTop*.35)+'px)'; }); }
+})();
+</script>

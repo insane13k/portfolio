@@ -1,0 +1,619 @@
+<title>Aryan Portfolio Blueprint</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#070A14;--bg2:#0C1020;--bg3:#121830;--line:#1C2440;--line2:#2A3560;
+  --text:#E7EAF6;--muted:#8F97B3;--dim:#5C6486;
+  --a:#38E1FF;--b:#B26BFF;--warn:#FFB547;--ok:#5EF0A0;
+  --display:'Syne',ui-sans-serif,system-ui,sans-serif;
+  --body:'Manrope',ui-sans-serif,system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(55% 40% at 15% -5%,rgba(56,225,255,.13),transparent 65%),
+    radial-gradient(45% 35% at 95% -5%,rgba(178,107,255,.14),transparent 65%),
+    linear-gradient(rgba(231,234,246,.028) 1px,transparent 1px) 0 0/100% 44px,
+    linear-gradient(90deg,rgba(231,234,246,.028) 1px,transparent 1px) 0 0/44px 100%;
+  -webkit-mask-image:linear-gradient(#000 40%,transparent);mask-image:linear-gradient(#000 40%,transparent)}
+a{color:var(--a);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--a);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1;letter-spacing:-.01em}
+h1{font-size:clamp(2.3rem,5.4vw,3.9rem);font-weight:800}
+h2{font-size:clamp(1.55rem,3vw,2.15rem);font-weight:800}
+h3{font-size:1.05rem;font-weight:700}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--a)}
+.muted{color:var(--muted)}
+.wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 24px}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:20;background:rgba(7,10,20,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:20px;height:56px}
+.brand{font-family:var(--display);font-weight:800;font-size:.95rem;letter-spacing:.02em;white-space:nowrap}
+.brand b{color:var(--a)}
+.top nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;margin-left:auto}
+.top nav::-webkit-scrollbar{display:none}
+.top nav a{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:6px 10px;border-radius:6px;white-space:nowrap}
+.top nav a:hover{color:var(--text);background:var(--bg3);text-decoration:none}
+
+/* intro */
+.intro{padding:72px 0 44px}
+.intro h1{margin:14px 0 18px;max-width:15ch}
+.intro h1 em{font-style:normal;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:1.15rem;color:var(--muted);max-width:60ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.chip{font-family:var(--mono);font-size:.74rem;padding:6px 11px;border:1px solid var(--line2);border-radius:999px;color:var(--text);background:rgba(12,16,32,.6)}
+.chip b{color:var(--ok);font-weight:500}
+
+/* sections */
+.sec{padding:64px 0;border-top:1px solid var(--line)}
+.sec-h{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.sec-h p{color:var(--muted);max-width:64ch}
+.note{font-size:.92rem;color:var(--muted);max-width:64ch}
+.note b{color:var(--text);font-weight:600}
+
+/* palette picker */
+.pals{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 18px}
+.pals>span{font-family:var(--mono);font-size:.74rem;color:var(--muted);margin-right:4px}
+.pal{display:inline-flex;align-items:center;gap:8px;padding:7px 13px 7px 9px;border:1px solid var(--line2);background:var(--bg2);color:var(--text);border-radius:999px;font:500 .82rem var(--body);cursor:pointer}
+.pal i{width:14px;height:14px;border-radius:50%;display:inline-block;box-shadow:0 0 0 2px var(--bg2)}
+.pal i+i{margin-left:-8px}
+.pal[aria-pressed=true]{border-color:var(--a);box-shadow:0 0 0 3px rgba(56,225,255,.15)}
+
+/* stage */
+.stage{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:32px;align-items:start}
+.stage[data-pal=aurora]{--a:#5EF0A0;--b:#4F8DFF}
+.stage[data-pal=solar]{--a:#FFB547;--b:#FF5C8A}
+.desk-wrap{position:relative;overflow:hidden}
+.desk{width:820px;transform-origin:top left;border:1px solid var(--line2);border-radius:12px;overflow:hidden;background:#060811;box-shadow:0 30px 80px -30px rgba(0,0,0,.85)}
+.chrome{display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;background:#0B0F1D;border-bottom:1px solid var(--line)}
+.chrome i{width:10px;height:10px;border-radius:50%}
+.chrome i:nth-child(1){background:#FF5F57}.chrome i:nth-child(2){background:#FEBC2E}.chrome i:nth-child(3){background:#28C840}
+.chrome span{margin-left:12px;flex:1;max-width:320px;font:400 .7rem var(--mono);color:var(--muted);background:#070A14;border:1px solid var(--line);border-radius:6px;padding:4px 10px}
+
+/* the mini site inside the desktop frame */
+.site{position:relative;height:520px;overflow:hidden;font-size:13px;line-height:1.5;cursor:crosshair;
+  background:radial-gradient(70% 60% at 80% 40%,color-mix(in srgb,var(--b) 14%,transparent),transparent 70%),#060811}
+.s-nav{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;gap:22px;padding:16px 30px;z-index:3}
+.s-nav .lg{font:800 1rem var(--display);letter-spacing:.06em}
+.s-nav .lg b{color:var(--a)}
+.s-nav ul{list-style:none;display:flex;gap:18px;margin:0 0 0 auto;padding:0;font:500 .76rem var(--mono);color:var(--muted)}
+.s-nav ul li:first-child{color:var(--text)}
+.s-nav .rs{font:600 .72rem var(--body);padding:7px 12px;border:1px solid var(--line2);border-radius:8px;color:var(--text)}
+.s-hero{position:absolute;inset:0;display:grid;grid-template-columns:1.05fr 1fr}
+.s-copy{position:relative;z-index:2;align-self:center;padding:40px 0 40px 36px}
+.s-eyebrow{font:500 .68rem var(--mono);letter-spacing:.14em;color:var(--a);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.s-eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok)}
+.s-copy h1{font-size:2.9rem;line-height:1;letter-spacing:-.02em;margin:0 0 12px}
+.s-role{font:600 1.15rem var(--body);margin-bottom:12px;min-height:1.6em}
+.s-role #tw{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.s-role .caret{display:inline-block;width:2px;height:1em;background:var(--a);margin-left:3px;vertical-align:-.15em;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.s-sub{color:var(--muted);max-width:36ch;margin-bottom:20px}
+.s-cta{display:flex;gap:10px}
+.s-btn{font:600 .78rem var(--body);padding:10px 16px;border-radius:10px;display:inline-block;color:var(--text)}
+.s-btn.p{background:linear-gradient(90deg,var(--a),var(--b));color:#06080F;box-shadow:0 8px 24px -8px var(--a)}
+.s-btn.g{border:1px solid var(--line2);background:rgba(255,255,255,.03)}
+.s-gl{position:relative;z-index:1}
+.s-gl canvas{display:block;width:100%!important;height:100%!important}
+.s-gl.nogl{background:radial-gradient(40% 40% at 50% 50%,color-mix(in srgb,var(--a) 30%,transparent),transparent 70%)}
+
+/* tilt card */
+.tilt{position:absolute;right:26px;bottom:24px;z-index:4;width:250px;padding:14px;border-radius:14px;background:rgba(12,16,32,.78);border:1px solid var(--line2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:transform .15s ease-out;transform-style:preserve-3d;--gx:50%;--gy:50%;cursor:pointer}
+.tilt::before{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(160px 120px at var(--gx) var(--gy),color-mix(in srgb,var(--a) 22%,transparent),transparent 70%);pointer-events:none}
+.tilt .tag{font:500 .6rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--b)}
+.tilt h3{font-size:.95rem;margin:4px 0 3px}
+.tilt p{font-size:.72rem;color:var(--muted)}
+.tilt .shot{height:76px;border-radius:8px;margin:10px 0;background:linear-gradient(135deg,color-mix(in srgb,var(--a) 35%,#0C1020),color-mix(in srgb,var(--b) 35%,#0C1020));position:relative;overflow:hidden}
+.tilt .shot::after{content:"";position:absolute;left:10px;right:10px;bottom:10px;height:22px;border-radius:5px;background:rgba(255,255,255,.12)}
+.tilt .stack{display:flex;gap:5px;flex-wrap:wrap}
+.tilt .stack span{font:500 .6rem var(--mono);padding:3px 7px;border-radius:5px;background:rgba(255,255,255,.06);border:1px solid var(--line)}
+
+/* phone frame */
+.phone{width:260px;height:540px;border-radius:38px;border:1px solid var(--line2);background:#060811;position:relative;overflow:hidden;box-shadow:0 30px 80px -30px rgba(0,0,0,.85),inset 0 0 0 6px #0B0F1D;margin:0 auto}
+.notch{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:84px;height:22px;border-radius:12px;background:#0B0F1D;z-index:5}
+.ph-bg{position:absolute;inset:6px;border-radius:32px;overflow:hidden;background:#060811}
+.ph-bg i{position:absolute;border-radius:50%;filter:blur(30px);opacity:.5;display:block}
+.ph-bg i:nth-child(1){width:190px;height:190px;background:var(--a);top:-50px;right:-60px;animation:drift 9s ease-in-out infinite alternate}
+.ph-bg i:nth-child(2){width:170px;height:170px;background:var(--b);bottom:140px;left:-70px;animation:drift 12s ease-in-out infinite alternate-reverse}
+@keyframes drift{to{transform:translate(22px,32px) scale(1.15)}}
+.ph{position:absolute;inset:6px;border-radius:32px;padding:46px 20px 20px;display:flex;flex-direction:column;z-index:2;font-size:13px;line-height:1.45}
+.ph .row{display:flex;justify-content:space-between;align-items:center}
+.ph .lg{font:800 .9rem var(--display);letter-spacing:.06em}
+.ph .lg b{color:var(--a)}
+.ph .burger{width:18px;height:2px;background:var(--text);box-shadow:0 5px 0 var(--text),0 -5px 0 var(--text)}
+.ph .body{margin-top:auto;display:flex;flex-direction:column;gap:8px}
+.ph .s-eyebrow{margin-bottom:2px}
+.ph h1{font-size:1.9rem;line-height:1;letter-spacing:-.02em}
+.ph .role{font:600 .95rem var(--body)}
+.ph .role em{font-style:normal;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ph .sub{font-size:.74rem;color:var(--muted)}
+.ph .btns{display:grid;gap:8px;margin-top:6px}
+.ph .s-btn{text-align:center;font-size:.76rem}
+.ph .mini{margin-top:14px;padding:10px 12px;border-radius:12px;border:1px solid var(--line2);background:rgba(12,16,32,.7);display:flex;gap:10px;align-items:center}
+.ph .mini i{width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,var(--a),var(--b));opacity:.85;flex:none;display:block}
+.ph .mini b{display:block;font:700 .78rem var(--display)}
+.ph .mini small{font-size:.66rem;color:var(--muted)}
+.ph .dots{display:flex;gap:5px;justify-content:center;margin-top:14px}
+.ph .dots i{width:5px;height:5px;border-radius:50%;background:var(--line2);display:block}
+.ph .dots i:first-child{background:var(--a);width:16px;border-radius:3px}
+
+.caps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:22px}
+.cap{font-size:.86rem;color:var(--muted);padding-left:12px;border-left:2px solid var(--line2)}
+.cap b{color:var(--text);font-weight:600;display:block}
+
+/* page map */
+.map{display:grid;grid-template-columns:150px 1fr;gap:36px;align-items:start}
+.wire{position:sticky;top:76px;display:flex;flex-direction:column;gap:4px;padding:8px;border:1px solid var(--line2);border-radius:10px;background:var(--bg2)}
+.wire b{display:flex;align-items:center;border-radius:4px;background:var(--bg3);border:1px solid var(--line);font:500 .56rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim);padding:0 6px;transition:background .2s,color .2s,border-color .2s}
+.wire b.on{background:color-mix(in srgb,var(--a) 18%,var(--bg3));border-color:var(--a);color:var(--text)}
+.map-list{display:flex;flex-direction:column}
+.map-item{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);border-radius:4px}
+.map-item:hover h3{color:var(--a)}
+.map-item p{color:var(--muted);font-size:.95rem}
+.map-item .fx{font:400 .7rem var(--mono);color:var(--b);margin-top:6px}
+
+/* tools */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.tool{padding:18px 20px;border:1px solid var(--line);border-radius:12px;background:rgba(12,16,32,.6)}
+.tool h3{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.tool h3 small{font:400 .66rem var(--mono);color:var(--dim);letter-spacing:.06em}
+.tool p{color:var(--muted);font-size:.92rem;margin-top:6px}
+
+/* hosting */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:rgba(12,16,32,.4)}
+table{border-collapse:collapse;width:100%;min-width:780px;font-size:.9rem}
+th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font:500 .7rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--bg2)}
+th.rec{color:var(--a)}
+td:first-child{color:var(--muted);font-size:.82rem;white-space:nowrap}
+td.y{color:var(--ok)}td.n{color:var(--dim)}
+.callout{margin:26px 0;border:1px solid color-mix(in srgb,var(--warn) 45%,transparent);background:color-mix(in srgb,var(--warn) 7%,transparent);border-radius:12px;padding:18px 22px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+.callout .big{font:800 2.3rem var(--display);color:var(--warn);line-height:1;white-space:nowrap}
+.callout p{color:var(--muted);font-size:.95rem}
+.callout p b{color:var(--text)}
+.flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:12px;align-items:center;margin:8px 0 14px}
+.node{padding:16px 18px;border:1px solid var(--line2);border-radius:12px;background:var(--bg2)}
+.node .eyebrow{color:var(--muted);font-size:.64rem}
+.node b{display:block;font-family:var(--display);font-size:.95rem;margin-top:4px}
+.node small{display:block;color:var(--muted);font-size:.8rem;margin-top:4px}
+.arr{color:var(--a);font-family:var(--mono);font-size:1.2rem}
+
+/* roadmap */
+.legend{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.who{font:500 .66rem var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:6px;white-space:nowrap;border:1px solid}
+.who.you{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 45%,transparent)}
+.who.me{color:var(--a);border-color:color-mix(in srgb,var(--a) 45%,transparent)}
+.who.both{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 45%,transparent)}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s;display:flex;flex-direction:column}
+.steps li{counter-increment:s;display:grid;grid-template-columns:44px 1fr auto;gap:18px;padding:20px 0;border-bottom:1px solid var(--line);align-items:start}
+.steps li::before{content:counter(s);font:800 1.5rem var(--display);color:var(--line2);line-height:1.1}
+.steps h3{margin-bottom:4px}
+.steps p{color:var(--muted);font-size:.95rem}
+.steps .est{font:400 .7rem var(--mono);color:var(--dim);margin-top:6px}
+.steps .who{margin-top:2px}
+
+/* references */
+.refs{display:flex;flex-direction:column}
+.ref{display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.ref a{font-weight:700;font-family:var(--display);font-size:1rem}
+.ref small{display:block;font:400 .68rem var(--mono);color:var(--dim);margin-top:2px}
+.ref .k{font:500 .62rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--b);display:inline-block;margin-bottom:3px}
+.ref p{color:var(--muted);font-size:.92rem}
+
+/* checklist */
+.check{display:flex;flex-direction:column}
+.check label{display:grid;grid-template-columns:22px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer;align-items:start}
+.check input{appearance:none;-webkit-appearance:none;width:18px;height:18px;border:1px solid var(--line2);border-radius:5px;margin:3px 0 0;background:var(--bg2);display:grid;place-items:center;cursor:pointer}
+.check input:checked{background:var(--ok);border-color:var(--ok)}
+.check input:checked::after{content:"";width:5px;height:9px;border:solid #06080F;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.check label:has(input:checked) .t{color:var(--dim);text-decoration:line-through}
+.check .t small{display:block;color:var(--muted);font-size:.84rem;text-decoration:none}
+.pick{margin-top:22px;font-size:.95rem;color:var(--muted)}
+.pick b{color:var(--text)}
+.pick .pal-name{color:var(--a);font-family:var(--mono)}
+
+.next{margin-top:40px;padding:26px 28px;border-radius:14px;border:1px solid var(--line2);background:linear-gradient(135deg,color-mix(in srgb,var(--a) 10%,var(--bg2)),color-mix(in srgb,var(--b) 10%,var(--bg2)))}
+.next h3{font-size:1.25rem;margin-bottom:8px}
+.next p{color:var(--muted);max-width:60ch}
+footer{padding:36px 0 56px;font:400 .72rem var(--mono);color:var(--dim)}
+
+@media (max-width:900px){
+  .stage{grid-template-columns:1fr}
+  .map{grid-template-columns:1fr}
+  .wire{position:static;flex-direction:row;flex-wrap:wrap}
+  .wire b{height:28px!important;flex:1 1 auto}
+  .map-item{grid-template-columns:1fr;gap:6px}
+  .ref{grid-template-columns:1fr;gap:6px}
+  .flow{grid-template-columns:1fr}
+  .arr{transform:rotate(90deg);text-align:center}
+  .steps li{grid-template-columns:36px 1fr}
+  .steps .who{grid-column:2}
+  .callout{grid-template-columns:1fr;gap:8px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">ARYAN<b>.</b>PORTFOLIO</div>
+    <nav>
+      <a href="#preview">Preview</a>
+      <a href="#map">Page map</a>
+      <a href="#build">Build</a>
+      <a href="#hosting">Hosting</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#refs">References</a>
+      <a href="#you">Your part</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section class="intro">
+  <p class="eyebrow">Plan · Concept preview · 12 Sep 2026</p>
+  <h1>Blueprint for a portfolio that <em>moves</em></h1>
+  <p class="lede">One long page that tells your story — projects, experience, education, skills — with 3D and motion that make people stop scrolling. Free to host, works on every phone, and it's yours for good. Here's the whole plan, plus a working sample you can touch.</p>
+  <div class="chips">
+    <span class="chip">Hosting cost <b>₹0 / month</b></span>
+    <span class="chip">Live link <b>from session 1</b></span>
+    <span class="chip">Phone + desktop <b>both first-class</b></span>
+    <span class="chip">Updates <b>you edit words, not code</b></span>
+  </div>
+</section>
+
+<section class="sec" id="preview">
+  <div class="sec-h">
+    <p class="eyebrow">Concept preview</p>
+    <h2>Move your mouse over it.</h2>
+    <p>A working sample of the hero — the first screen people see — built the way the real site will be. The desktop version runs a real 3D scene that follows your cursor; the phone version shows the lighter effect we'll use on mobiles to save battery. The words are samples; yours replace them.</p>
+  </div>
+
+  <div class="pals" role="group" aria-label="Colour world">
+    <span>Pick a colour world — the sample follows it:</span>
+    <button class="pal" data-pal="cyber" aria-pressed="true"><i style="background:#38E1FF"></i><i style="background:#B26BFF"></i>Cyber</button>
+    <button class="pal" data-pal="aurora" aria-pressed="false"><i style="background:#5EF0A0"></i><i style="background:#4F8DFF"></i>Aurora</button>
+    <button class="pal" data-pal="solar" aria-pressed="false"><i style="background:#FFB547"></i><i style="background:#FF5C8A"></i>Solar</button>
+  </div>
+
+  <div class="stage" id="stage" data-pal="cyber">
+    <div class="desk-wrap">
+      <div class="desk">
+        <div class="chrome"><i></i><i></i><i></i><span>aryanarora.netlify.app</span></div>
+        <div class="site" id="site">
+          <div class="s-nav">
+            <div class="lg">AA<b>.</b></div>
+            <ul><li>Work</li><li>About</li><li>Experience</li><li>Contact</li></ul>
+            <span class="rs">Resume ↓</span>
+          </div>
+          <div class="s-hero">
+            <div class="s-copy">
+              <p class="s-eyebrow">OPEN TO WORK · 2026</p>
+              <h1>Aryan Arora</h1>
+              <p class="s-role">I build <span id="tw">web apps.</span><span class="caret"></span></p>
+              <p class="s-sub">Full-stack developer. Recently shipped Protein Plate 2.0 — a live food-delivery shop with a customer site, admin panel and Android apps.</p>
+              <div class="s-cta"><span class="s-btn p">See projects</span><span class="s-btn g">Get in touch</span></div>
+            </div>
+            <div class="s-gl" id="gl"></div>
+          </div>
+          <div class="tilt" id="tilt">
+            <div class="tag">Featured project</div>
+            <h3>Protein Plate 2.0</h3>
+            <p>Online delivery shop: website, admin panel, Android apps, UPI payments.</p>
+            <div class="shot"></div>
+            <div class="stack"><span>React</span><span>Firebase</span><span>Expo</span><span>Live ↗</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="ph-bg"><i></i><i></i></div>
+      <div class="ph">
+        <div class="row"><div class="lg">AA<b>.</b></div><div class="burger"></div></div>
+        <div class="body">
+          <p class="s-eyebrow">OPEN TO WORK</p>
+          <h1>Aryan Arora</h1>
+          <p class="role">I build <em>web &amp; Android apps.</em></p>
+          <p class="sub">Full-stack developer. Recently shipped Protein Plate 2.0, a live delivery shop.</p>
+          <div class="btns"><span class="s-btn p">See projects</span><span class="s-btn g">Get in touch</span></div>
+          <div class="mini"><i></i><div><b>Protein Plate 2.0</b><small>React · Firebase · Expo</small></div></div>
+          <div class="dots"><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="caps">
+    <div class="cap"><b>Desktop</b>3D shape and particles follow the cursor. Text types itself. The card tilts in 3D when you hover it.</div>
+    <div class="cap"><b>Phone</b>Same colours and layout, a soft moving glow instead of heavy 3D. Smooth on a mid-range Android.</div>
+    <div class="cap"><b>Colour world</b>Whatever you pick here becomes the site's accent everywhere — buttons, glows, links, the 3D scene.</div>
+  </div>
+</section>
+
+<section class="sec" id="map">
+  <div class="sec-h">
+    <p class="eyebrow">Page map</p>
+    <h2>Everything on the site, top to bottom.</h2>
+    <p>One long scrolling page — no clicking between pages, which is what recruiters and clients actually do on a phone. Hover a row to see where it sits.</p>
+  </div>
+  <div class="map">
+    <div class="wire" aria-hidden="true">
+      <b data-k="hero" style="height:62px">Hero</b>
+      <b data-k="about" style="height:34px">About</b>
+      <b data-k="projects" style="height:66px">Projects</b>
+      <b data-k="exp" style="height:42px">Experience</b>
+      <b data-k="edu" style="height:30px">Education</b>
+      <b data-k="skills" style="height:38px">Skills</b>
+      <b data-k="wins" style="height:24px">Wins</b>
+      <b data-k="contact" style="height:36px">Contact</b>
+    </div>
+    <div class="map-list">
+      <div class="map-item" data-k="hero" tabindex="0"><h3>Hero</h3><div><p>Your name, one line about what you do, two buttons. The 3D scene lives here and reacts to the cursor.</p><p class="fx">3D scene · typewriter text · glow buttons</p></div></div>
+      <div class="map-item" data-k="about" tabindex="0"><h3>About</h3><div><p>A short bio, your photo, and a strip of the tools you use scrolling past.</p><p class="fx">photo tilt · logo marquee · scroll reveal</p></div></div>
+      <div class="map-item" data-k="projects" tabindex="0"><h3>Projects</h3><div><p>The heart of the site. A card per project with a screenshot, the tech used, and Live / Code buttons. Click opens the full story with more screenshots.</p><p class="fx">3D tilt cards · spotlight glow · detail modal</p></div></div>
+      <div class="map-item" data-k="exp" tabindex="0"><h3>Experience</h3><div><p>Jobs, internships and freelance work on a timeline that draws itself as you scroll.</p><p class="fx">scroll-drawn timeline · slide-in cards</p></div></div>
+      <div class="map-item" data-k="edu" tabindex="0"><h3>Education</h3><div><p>College, degree, years, highlights — in the same timeline language so the page feels like one piece.</p><p class="fx">scroll timeline</p></div></div>
+      <div class="map-item" data-k="skills" tabindex="0"><h3>Skills</h3><div><p>A bento grid: languages, frameworks, tools. Hover a tile to see where you used it — skills tied to projects read as real.</p><p class="fx">bento grid · hover flip</p></div></div>
+      <div class="map-item" data-k="wins" tabindex="0"><h3>Achievements</h3><div><p>Certificates, hackathons, awards as a badge wall. Skipped entirely if you have none yet — no empty sections.</p><p class="fx">badge wall</p></div></div>
+      <div class="map-item" data-k="contact" tabindex="0"><h3>Contact</h3><div><p>A form that lands in your email (free), plus GitHub, LinkedIn, WhatsApp. Buttons pull toward the cursor.</p><p class="fx">magnetic buttons · working form</p></div></div>
+      <div class="map-item" data-k="" tabindex="0"><h3>Site-wide</h3><div><p>A short loader on first visit, custom cursor on desktop, buttery smooth scrolling, dark/light switch, resume download, and one hidden easter egg for people who explore.</p><p class="fx">loader · cursor · smooth scroll · theme switch</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="build">
+  <div class="sec-h">
+    <p class="eyebrow">How it's built</p>
+    <h2>The same foundation as Protein Plate, plus a motion layer.</h2>
+    <p>Nothing exotic. Every tool here is free and widely used; the first one is what Protein Plate's website already runs on, so it's proven on your own project.</p>
+  </div>
+  <div class="grid2">
+    <div class="tool"><h3>React + Vite <small>THE FRAME</small></h3><p>The structure of the site. Same as Protein Plate's website — fast to build, fast to load.</p></div>
+    <div class="tool"><h3>Tailwind CSS <small>THE LOOK</small></h3><p>Styling. Makes the phone and desktop layouts quick to get right and consistent.</p></div>
+    <div class="tool"><h3>Motion <small>THE POLISH</small></h3><p>Every fade, slide, reveal and page transition. This is what makes it feel expensive.</p></div>
+    <div class="tool"><h3>Three.js <small>THE 3D</small></h3><p>The hero scene, floating shapes, depth on cards. The same engine behind the famous 3D portfolios listed below.</p></div>
+    <div class="tool"><h3>GSAP ScrollTrigger + Lenis <small>THE SCROLL</small></h3><p>Animations tied to how far you've scrolled (the timeline drawing itself), and the smooth-scroll feel.</p></div>
+    <div class="tool"><h3>One content file <small>YOUR PART</small></h3><p>Projects, jobs, education and skills live in one plain file. Adding a project later means adding a few lines — no design work.</p></div>
+  </div>
+  <p class="note" style="margin-top:22px"><b>Why not Wix, Canva or a template?</b> Their free plans stamp their branding on your site, the address is theirs, and none of them can do real 3D. This one is yours, has no branding, and costs nothing.</p>
+  <p class="note" style="margin-top:12px"><b>On phones</b> the design stays identical but the effects get lighter — fewer particles, no custom cursor — so it stays smooth and doesn't drain the battery. It also respects the phone's "reduce motion" setting.</p>
+</section>
+
+<section class="sec" id="hosting">
+  <div class="sec-h">
+    <p class="eyebrow">Where it lives</p>
+    <h2>Free hosting, for as long as you want.</h2>
+    <p>A portfolio is just a set of files. Several companies host files like these free, with no expiry, because a portfolio uses a tiny fraction of what they allow. Netlify is my pick — here's why.</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th></th><th class="rec">Netlify (pick)</th><th>Vercel</th><th>Cloudflare Pages</th><th>GitHub Pages</th><th>Firebase Hosting</th></tr></thead>
+      <tbody>
+        <tr><td>Monthly cost</td><td class="y">₹0</td><td class="y">₹0</td><td class="y">₹0</td><td class="y">₹0</td><td class="y">₹0</td></tr>
+        <tr><td>Free address</td><td>aryanarora.netlify.app</td><td>aryanarora.vercel.app</td><td>aryanarora.pages.dev</td><td>aryanarora.github.io</td><td>aryanarora.web.app</td></tr>
+        <tr><td>Visitors allowed</td><td>100 GB / month (≈ tens of thousands of visits)</td><td>100 GB / month</td><td>Unlimited</td><td>100 GB / month</td><td>10 GB / month</td></tr>
+        <tr><td>Contact form, no setup</td><td class="y">Yes, built in</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="n">No</td></tr>
+        <tr><td>Updates itself when we change the site</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td>Yes, with extra setup</td><td>Manual, like Protein Plate</td></tr>
+        <tr><td>Your own domain later</td><td class="y">Free to connect</td><td class="y">Free</td><td class="y">Free</td><td class="y">Free</td><td class="y">Free</td></tr>
+        <tr><td>Fit for you</td><td>Best all-round; form included</td><td>Equally good, no form</td><td>Most generous limits</td><td>Simplest, fewest features</td><td>Familiar from Protein Plate, but you'd share one project with a live shop</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <div class="big">₹0</div>
+    <p><b>To build and to host.</b> The only optional cost in this plan is your own domain name (aryanarora.dev or .com), roughly ₹800–1,500 a year. Without it you still get a clean free address like aryanarora.netlify.app that never expires.</p>
+  </div>
+
+  <h3 style="margin:30px 0 14px">How updates reach the live site</h3>
+  <div class="flow">
+    <div class="node"><span class="eyebrow">Step 1</span><b>Your site's files</b><small>Stored on GitHub, free. This is the master copy.</small></div>
+    <div class="arr">→</div>
+    <div class="node"><span class="eyebrow">Step 2</span><b>Netlify notices the change</b><small>Builds the site automatically, about a minute.</small></div>
+    <div class="arr">→</div>
+    <div class="node"><span class="eyebrow">Step 3</span><b>aryanarora.netlify.app</b><small>Live for everyone, worldwide, with https.</small></div>
+  </div>
+  <p class="note">Every improvement we make goes live on its own. No manual uploads, no "did I deploy the right folder" — the problem we had to watch for on Protein Plate simply doesn't exist here.</p>
+  <p class="note" style="margin-top:12px"><b>Two free accounts you'll create yourself:</b> GitHub first, then Netlify (it signs in with GitHub). I'll walk you through every click, but passwords are always yours to type — I never enter them.</p>
+</section>
+
+<section class="sec" id="roadmap">
+  <div class="sec-h">
+    <p class="eyebrow">Roadmap</p>
+    <h2>From nothing to live, in order.</h2>
+    <p>A "session" is one working sitting with me. Total: roughly six sessions to a finished, polished site, and the link exists after the first one.</p>
+    <div class="legend"><span class="who you">You</span><span class="who me">Me</span><span class="who both">Together</span></div>
+  </div>
+  <ol class="steps">
+    <li><div><h3>Send the content</h3><p>Use the checklist at the bottom. Partial is fine — we fill gaps as we go. Pick a colour world from the preview.</p><p class="est">≈ 1 hour of your time, before session 1</p></div><span class="who you">You</span></li>
+    <li><div><h3>Skeleton and live link</h3><p>Create the project, set up GitHub and Netlify click by click, publish a "coming soon" page with your name. Your link exists from this day.</p><p class="est">1 session</p></div><span class="who both">Together</span></li>
+    <li><div><h3>Build every section</h3><p>Hero, About, Projects, Experience, Education, Skills, Contact — with your real content. Phone layout first, then desktop.</p><p class="est">2–3 sessions</p></div><span class="who me">Me</span></li>
+    <li><div><h3>Motion and 3D</h3><p>Hero scene, tilt cards, scroll-drawn timelines, loader, custom cursor, page transitions. This is where it starts to look like the preview.</p><p class="est">1–2 sessions</p></div><span class="who me">Me</span></li>
+    <li><div><h3>Polish and launch</h3><p>Speed check on your actual phone, Google-friendly title and description, a preview image for when the link is shared on WhatsApp or LinkedIn, resume download, contact form test. Then you share it.</p><p class="est">1 session</p></div><span class="who both">Together</span></li>
+    <li><div><h3>Your own domain (optional)</h3><p>Buy aryanarora.dev or .com from any registrar; I connect it in minutes. The only step in this plan that costs money, and it can wait months.</p><p class="est">≈ 20 minutes, whenever</p></div><span class="who you">You</span></li>
+  </ol>
+</section>
+
+<section class="sec" id="refs">
+  <div class="sec-h">
+    <p class="eyebrow">References</p>
+    <h2>Sites to look at before we start.</h2>
+    <p>Open these on a laptop. Tell me which ones make you say "that one" — I'll borrow the feeling, not copy the site.</p>
+  </div>
+  <div class="refs">
+    <div class="ref"><div><a href="https://bruno-simon.com" target="_blank" rel="noopener">bruno-simon.com</a><small>3D playground</small></div><div><span class="k">The extreme end</span><p>You drive a car around a 3D world to read his portfolio. We borrow the playful-3D idea for the hero, not the whole game.</p></div></div>
+    <div class="ref"><div><a href="https://jesse-zhou.com" target="_blank" rel="noopener">jesse-zhou.com</a><small>3D room</small></div><div><span class="k">3D done fast</span><p>A room you explore, yet it loads quickly. Good reference for how much 3D is "enough".</p></div></div>
+    <div class="ref"><div><a href="https://henryheffernan.com" target="_blank" rel="noopener">henryheffernan.com</a><small>3D desk</small></div><div><span class="k">Interactive object</span><p>A 3D desk with a working retro computer. Shows how one strong interactive object beats ten small effects.</p></div></div>
+    <div class="ref"><div><a href="https://brittanychiang.com" target="_blank" rel="noopener">brittanychiang.com</a><small>developer classic</small></div><div><span class="k">Structure and clarity</span><p>The most-copied developer portfolio for a reason: spotlight cursor, clean sections, everything readable. Our page structure follows this logic.</p></div></div>
+    <div class="ref"><div><a href="https://lynnandtonic.com" target="_blank" rel="noopener">lynnandtonic.com</a><small>personality-first</small></div><div><span class="k">Scroll storytelling</span><p>Layered art that reacts to scrolling. Reference for the "the page responds to me" feeling.</p></div></div>
+    <div class="ref"><div><a href="https://ui.aceternity.com/components" target="_blank" rel="noopener">ui.aceternity.com</a><small>effects catalogue</small></div><div><span class="k">Point at what you like</span><p>A catalogue of exactly the effects we'll use — Spotlight, 3D Card, Aurora background, Lamp, Sparkles. Browse it and name your favourites.</p></div></div>
+    <div class="ref"><div><a href="https://magicui.design" target="_blank" rel="noopener">magicui.design</a><small>effects catalogue</small></div><div><span class="k">More components</span><p>Animated marquee, bento grid, globe, shimmer buttons. Same idea as Aceternity, different flavour.</p></div></div>
+    <div class="ref"><div><a href="https://reactbits.dev" target="_blank" rel="noopener">reactbits.dev</a><small>text and backgrounds</small></div><div><span class="k">Text animations</span><p>Decrypting text, split text, shiny text, animated backgrounds — the options for how your name appears.</p></div></div>
+    <div class="ref"><div><a href="https://www.awwwards.com/websites/portfolio/" target="_blank" rel="noopener">awwwards.com / portfolio</a><small>award winners</small></div><div><span class="k">Inspiration feed</span><p>Award-winning portfolios, new ones weekly. Scroll until something stops you, then send me the link.</p></div></div>
+  </div>
+</section>
+
+<section class="sec" id="you">
+  <div class="sec-h">
+    <p class="eyebrow">What I need from you</p>
+    <h2>The content checklist.</h2>
+    <p>Tick items as you send them — this page remembers your ticks on this device. Rough notes are fine; I write the final wording and you approve it.</p>
+  </div>
+  <div class="check">
+    <label><input type="checkbox" value="name"><span class="t">Full name, a one-line tagline, and what you want to be hired as<small>e.g. "Full-stack developer · React, Firebase, Android"</small></span></label>
+    <label><input type="checkbox" value="photo"><span class="t">A photo of you<small>Clear face, plain background if possible. Phone photo is fine.</small></span></label>
+    <label><input type="checkbox" value="bio"><span class="t">About you, 3–5 lines<small>Or just bullet points — I'll draft it.</small></span></label>
+    <label><input type="checkbox" value="projects"><span class="t">Projects<small>For each: name, what it does, your role, tech used, live link, code link, 2–3 screenshots. Protein Plate 2.0 first.</small></span></label>
+    <label><input type="checkbox" value="exp"><span class="t">Experience<small>Jobs, internships, freelance: company, role, dates, two lines on what you did.</small></span></label>
+    <label><input type="checkbox" value="edu"><span class="t">Education<small>College, degree, years, anything worth highlighting.</small></span></label>
+    <label><input type="checkbox" value="skills"><span class="t">Skills<small>Languages, frameworks, tools. I'll group them.</small></span></label>
+    <label><input type="checkbox" value="wins"><span class="t">Achievements<small>Certificates, hackathons, awards. Skip if none.</small></span></label>
+    <label><input type="checkbox" value="links"><span class="t">Links<small>GitHub, LinkedIn, email, WhatsApp number (if you want it public), anything else.</small></span></label>
+    <label><input type="checkbox" value="resume"><span class="t">Resume PDF<small>Or I build one from everything above.</small></span></label>
+    <label><input type="checkbox" value="taste"><span class="t">Your taste<small>Colour world from the preview, and any sites from the references that you loved.</small></span></label>
+  </div>
+  <p class="pick">Colour world you've picked: <span class="pal-name">Cyber</span> <b>·</b> change it anytime in the preview above.</p>
+
+  <div class="next">
+    <h3>Next step</h3>
+    <p>Reply with your colour world and whatever content you have ready — even a rough list. I'll set up the project, create the accounts with you click by click, and get the first version live in our next session.</p>
+  </div>
+</section>
+
+<footer>Plan prepared 12 Sep 2026 · Sample text in the preview is placeholder · All prices in INR, hosting free tiers as published by each provider</footer>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  var reduce = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var store = {
+    get:function(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } },
+    set:function(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+  };
+
+  /* scale the desktop mock-up to whatever width it has */
+  var dw=document.querySelector('.desk-wrap'), dk=document.querySelector('.desk');
+  function fit(){
+    var s=Math.min(1, dw.clientWidth/820);
+    dk.style.transform='scale('+s+')';
+    dw.style.height=Math.round(dk.offsetHeight*s)+'px';
+  }
+  if(window.ResizeObserver){ new ResizeObserver(fit).observe(dw); }
+  window.addEventListener('resize',fit); fit();
+
+  /* 3D hero scene */
+  var host=document.getElementById('gl'), site=document.getElementById('site'), gl=null;
+  if(host && window.THREE){
+    try{
+      var W=host.clientWidth||400, H=host.clientHeight||520;
+      var renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+      renderer.setSize(W,H);
+      host.appendChild(renderer.domElement);
+      var scene=new THREE.Scene();
+      var cam=new THREE.PerspectiveCamera(42,W/H,.1,100); cam.position.z=6.2;
+      var group=new THREE.Group();
+      var outer=new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(1.7,1)),new THREE.LineBasicMaterial({color:0x38e1ff,transparent:true,opacity:.6}));
+      var inner=new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(1.05,0)),new THREE.LineBasicMaterial({color:0xb26bff,transparent:true,opacity:.7}));
+      var core=new THREE.Mesh(new THREE.IcosahedronGeometry(.42,2),new THREE.MeshBasicMaterial({color:0x38e1ff,transparent:true,opacity:.35}));
+      group.add(outer); group.add(inner); group.add(core); scene.add(group);
+      var N=650, pos=new Float32Array(N*3);
+      for(var i=0;i<N;i++){
+        var r=2.4+Math.random()*2.2, th=Math.random()*Math.PI*2, ph=Math.acos(2*Math.random()-1);
+        pos[i*3]=r*Math.sin(ph)*Math.cos(th); pos[i*3+1]=r*Math.sin(ph)*Math.sin(th); pos[i*3+2]=r*Math.cos(ph);
+      }
+      var pg=new THREE.BufferGeometry(); pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
+      var pts=new THREE.Points(pg,new THREE.PointsMaterial({color:0x38e1ff,size:.04,transparent:true,opacity:.7}));
+      scene.add(pts);
+      var tx=0,ty=0,mx=0,my=0;
+      site.addEventListener('pointermove',function(e){
+        var r=site.getBoundingClientRect();
+        tx=((e.clientX-r.left)/r.width-.5)*2; ty=((e.clientY-r.top)/r.height-.5)*2;
+        if(reduce){ mx=tx; my=ty; draw(0); }
+      });
+      site.addEventListener('pointerleave',function(){ tx=0; ty=0; });
+      function draw(t){
+        mx+=(tx-mx)*.06; my+=(ty-my)*.06;
+        group.rotation.y=t*.00022+mx*.7; group.rotation.x=t*.00013+my*.45;
+        inner.rotation.y=-t*.0004;
+        var s=1+Math.sin(t*.0012)*.04; core.scale.set(s,s,s);
+        pts.rotation.y=-t*.00006; pts.rotation.x=my*.15;
+        cam.position.x=mx*.5; cam.position.y=-my*.35; cam.lookAt(0,0,0);
+        renderer.render(scene,cam);
+      }
+      function loop(t){ draw(t); requestAnimationFrame(loop); }
+      if(reduce){ draw(0); } else { requestAnimationFrame(loop); }
+      if(window.ResizeObserver){
+        new ResizeObserver(function(){
+          W=host.clientWidth; H=host.clientHeight; if(!W||!H) return;
+          renderer.setSize(W,H); cam.aspect=W/H; cam.updateProjectionMatrix(); if(reduce) draw(0);
+        }).observe(host);
+      }
+      gl={ set:function(a,b){ outer.material.color.set(a); core.material.color.set(a); pts.material.color.set(a); inner.material.color.set(b); if(reduce) draw(0); } };
+    }catch(e){ host.classList.add('nogl'); }
+  } else if(host){ host.classList.add('nogl'); }
+
+  /* typewriter */
+  var phrases=['web apps.','Android apps.','shops that take real orders.'];
+  var tw=document.getElementById('tw'), pi=0, ci=phrases[0].length, del=false;
+  function tick(){
+    var p=phrases[pi];
+    if(!del){ ci++; tw.textContent=p.slice(0,ci); if(ci>=p.length){ del=true; setTimeout(tick,1700); return; } }
+    else { ci--; tw.textContent=p.slice(0,ci); if(ci<=0){ del=false; pi=(pi+1)%phrases.length; } }
+    setTimeout(tick, del?38:72);
+  }
+  if(!reduce){ del=true; setTimeout(tick,1700); }
+
+  /* tilt card */
+  var tilt=document.getElementById('tilt');
+  tilt.addEventListener('pointermove',function(e){
+    var r=tilt.getBoundingClientRect();
+    var x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+    tilt.style.transform='perspective(700px) rotateX('+(-y*16)+'deg) rotateY('+(x*16)+'deg) translateY(-2px)';
+    tilt.style.setProperty('--gx',((x+.5)*100)+'%'); tilt.style.setProperty('--gy',((y+.5)*100)+'%');
+  });
+  tilt.addEventListener('pointerleave',function(){ tilt.style.transform=''; tilt.style.setProperty('--gx','50%'); tilt.style.setProperty('--gy','50%'); });
+
+  /* colour world */
+  var pals={cyber:{a:'#38E1FF',b:'#B26BFF',label:'Cyber'},aurora:{a:'#5EF0A0',b:'#4F8DFF',label:'Aurora'},solar:{a:'#FFB547',b:'#FF5C8A',label:'Solar'}};
+  var stage=document.getElementById('stage');
+  function setPal(n){
+    if(!pals[n]) n='cyber';
+    stage.dataset.pal=n;
+    document.querySelectorAll('.pal').forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.pal===n)); });
+    document.querySelectorAll('.pal-name').forEach(function(el){ el.textContent=pals[n].label; });
+    if(gl) gl.set(pals[n].a,pals[n].b);
+    store.set('pp-pal',n);
+  }
+  document.querySelectorAll('.pal').forEach(function(b){ b.addEventListener('click',function(){ setPal(b.dataset.pal); }); });
+  setPal(store.get('pp-pal')||'cyber');
+
+  /* page map highlight */
+  var blocks=document.querySelectorAll('.wire b');
+  function hi(k){ blocks.forEach(function(b){ b.classList.toggle('on', !!k && b.dataset.k===k); }); }
+  document.querySelectorAll('.map-item').forEach(function(it){
+    ['mouseenter','focusin'].forEach(function(ev){ it.addEventListener(ev,function(){ hi(it.dataset.k); }); });
+  });
+  hi('hero');
+
+  /* checklist memory */
+  document.querySelectorAll('.check input').forEach(function(c){
+    c.checked = store.get('pp-ck-'+c.value)==='1';
+    c.addEventListener('change',function(){ store.set('pp-ck-'+c.value, c.checked?'1':'0'); });
+  });
+})();
+</script>

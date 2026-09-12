@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aryan Arora — Full-stack developer</title>
+    <meta name="description" content="Aryan Arora builds web and Android products, and the systems behind them. Latest: Protein Plate 2.0, a live food-delivery shop." />
+    <meta name="theme-color" content="#070A14" />
+    <meta property="og:title" content="Aryan Arora — Full-stack developer" />
+    <meta property="og:description" content="Web and Android products, and the systems behind them." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/og.png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- Netlify needs to see the form in the built HTML once; the React form posts to it. -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <textarea name="message"></textarea>
+    </form>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
