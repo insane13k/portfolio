@@ -10,7 +10,8 @@ export function Contact() {
 
   const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const data = new FormData(e.currentTarget)
+    const form = e.currentTarget
+    const data = new FormData(form)
     const body = new URLSearchParams()
     body.set('form-name', 'contact')
     for (const [k, v] of data.entries()) body.set(k, String(v))
@@ -19,7 +20,7 @@ export function Contact() {
       const r = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() })
       if (!r.ok) throw new Error(String(r.status))
       setMsg({ text: 'Sent — thank you. I reply within a day.' })
-      e.currentTarget.reset()
+      form.reset()
     } catch {
       setMsg(import.meta.env.DEV
         ? { text: 'Sending only works on the live Netlify site, not on localhost.', err: true }
