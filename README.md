@@ -9,7 +9,7 @@ Lines marked `// SAMPLE` are placeholders.
 
 - Photos of projects → put them in `public/projects/` and set `image: "/projects/name.jpg"`.
 - Resume → put `resume.pdf` in `public/` and set `resumeUrl: "/resume.pdf"`.
-- Share preview image (WhatsApp / LinkedIn) → put a 1200×630 `og.png` in `public/`.
+- Share preview image (WhatsApp / LinkedIn) → `public/og.png`, rendered from `design/og.html` with headless Chrome.
 - GitHub activity tile → set `githubUsername`. Until then it shows a sample pattern.
 
 ## Run it on your computer
@@ -23,8 +23,9 @@ Open http://localhost:5180.
 
 ## Put it live (free)
 
-The site is built for Netlify. Once the project is on GitHub and connected to Netlify, every change goes live automatically.
-The contact form uses Netlify Forms — nothing to configure; submissions arrive in the Netlify dashboard (and by email if you turn that on there).
+Live at **https://aryanarora13.netlify.app** — every push to `main` goes live automatically (GitHub → Netlify).
+
+The contact form sends each message to my inbox through Web3Forms (free; the access key in `src/content.ts` is public by design and only allows sending *to* my address). Netlify Forms keeps a backup copy of every submission in the Netlify dashboard.
 
 ```bash
 npm run build   # produces dist/
