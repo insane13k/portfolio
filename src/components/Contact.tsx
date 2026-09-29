@@ -64,7 +64,6 @@ export function Contact() {
           </div>
         )}
       </div>
-      <div className="slot c" id="contact-slot" aria-hidden="true" />
     </section>
   )
 }

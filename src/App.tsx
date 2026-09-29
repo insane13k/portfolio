@@ -3,7 +3,6 @@ import { startStringTune } from './lib/stringTune'
 import { Loader } from './components/Loader'
 import { Progress } from './components/Progress'
 import { Cursor } from './components/Cursor'
-import { Scene } from './components/Scene'
 import { Nav } from './components/Nav'
 import { Hero } from './components/Hero'
 import { Work } from './components/Work'
@@ -23,7 +22,7 @@ export default function App() {
       <Loader />
       <Progress />
       <div className="glow" aria-hidden="true" />
-      <Scene />
+      <div className="stars" aria-hidden="true" />
       <Cursor />
       <Nav />
       <main>

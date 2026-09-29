@@ -24,9 +24,23 @@ main { position: relative; z-index: 2; }
 .eyebrow.live i { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 10px var(--ok); display: block; }
 .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
 
-/* ───────── layers ───────── */
-.gl-bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-.gl-obj { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 40; pointer-events: none; }
+/* ───────── layers ─────────
+   Ambience is painted, not rendered: two soft gradients and a fixed field of
+   dots drawn once by the compositor. No canvas, no animation loop, no GPU
+   cost while scrolling. */
+.stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .5;
+  background-image:
+    radial-gradient(1.4px 1.4px at 12% 18%, var(--a), transparent 60%),
+    radial-gradient(1.2px 1.2px at 78% 9%, var(--b), transparent 60%),
+    radial-gradient(1.1px 1.1px at 33% 71%, var(--a), transparent 60%),
+    radial-gradient(1.3px 1.3px at 91% 62%, var(--a), transparent 60%),
+    radial-gradient(1px 1px at 59% 34%, var(--b), transparent 60%),
+    radial-gradient(1px 1px at 5% 54%, var(--a), transparent 60%),
+    radial-gradient(1.2px 1.2px at 46% 92%, var(--a), transparent 60%),
+    radial-gradient(1px 1px at 68% 77%, var(--b), transparent 60%);
+  background-size: 420px 380px, 520px 460px, 380px 420px, 610px 520px, 300px 340px, 470px 400px, 560px 480px, 350px 390px;
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 0%, #000 35%, transparent 85%);
+  mask-image: radial-gradient(120% 90% at 50% 0%, #000 35%, transparent 85%); }
 .glow { position: fixed; inset: 0; z-index: 0; pointer-events: none;
   background: radial-gradient(60% 45% at 15% -5%, color-mix(in srgb, var(--a) 13%, transparent), transparent 65%),
               radial-gradient(50% 40% at 95% 0%, color-mix(in srgb, var(--b) 13%, transparent), transparent 65%); }
@@ -58,12 +72,16 @@ html.cur-big .cur .ring { width: 60px; height: 60px; margin: -30px 0 0 -30px; op
 .nav .links { display: flex; gap: 2px; }
 .nav .links a { padding: 7px 10px; border-radius: 999px; color: var(--muted); transition: color .2s, background .2s; }
 .nav .links a:hover { color: var(--text); background: var(--bg3); }
-.dock { width: 36px; height: 36px; border-radius: 50%; border: 0; background: none; flex: none; padding: 0; cursor: pointer; }
 .res { padding: 7px 12px; border: 1px solid var(--line2); border-radius: 999px; color: var(--text); transition: border-color .2s; }
 .res:hover { border-color: var(--a); }
 
 /* ───────── hero ───────── */
-.hero { position: relative; max-width: 1180px; margin: 0 auto; padding: 150px 32px 40px; display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 40px; min-height: 86vh; }
+/* One column, left-aligned: with the object gone the type carries the screen,
+   so it gets more room, and the section stops short of filling the viewport —
+   the work below should be reachable with one short scroll. */
+.hero { position: relative; max-width: 1180px; margin: 0 auto; padding: 172px 32px 56px; }
+.hero .h1 { max-width: 14ch; }
+.hero .sub { max-width: 54ch; }
 .h-copy { position: relative; z-index: 2; }
 .h1 { font-size: clamp(3rem, 7.2vw, 6.2rem); font-weight: 800; line-height: .95; letter-spacing: -.04em; margin: 18px 0 20px; }
 .h1 .ln { display: block; }
@@ -76,7 +94,6 @@ html.cur-big .cur .ring { width: 60px; height: 60px; margin: -30px 0 0 -30px; op
 .btn { display: inline-block; font: 600 .8rem var(--body); padding: 13px 20px; border-radius: 12px; color: var(--text); border: 1px solid var(--line2); background: color-mix(in srgb, var(--bg2) 60%, transparent); transition: border-color .2s, box-shadow .2s; cursor: pointer; }
 .btn.p { background: linear-gradient(90deg, var(--a), var(--b)); color: #06080F; border-color: transparent; box-shadow: 0 10px 30px -10px var(--a); }
 .btn.g:hover { border-color: var(--a); }
-.slot { aspect-ratio: 1; width: min(100%, 560px); justify-self: end; }
 
 /* ───────── cards ───────── */
 .tilt { position: relative; border: 1px solid var(--line2); border-radius: 16px; background: color-mix(in srgb, var(--bg2) 78%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 16px; transition: transform .15s ease-out, border-color .2s; transform-style: preserve-3d; --gx: 50%; --gy: 50%; overflow: hidden; display: block; }
@@ -171,8 +188,8 @@ html.cur-big .cur .ring { width: 60px; height: 60px; margin: -30px 0 0 -30px; op
 .sk-cols li { line-height: 1.9; }
 
 /* ───────── contact ───────── */
-.contact { max-width: 1180px; margin: 0 auto; padding: 0 32px 60px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
-.contact h2 { font-size: clamp(2.4rem, 5vw, 4.2rem); font-weight: 800; letter-spacing: -.035em; margin: 12px 0 18px; }
+.contact { max-width: 1180px; margin: 0 auto; padding: 0 32px 60px; }
+.contact h2 { font-size: clamp(2.4rem, 5vw, 4.2rem); font-weight: 800; letter-spacing: -.035em; margin: 12px 0 18px; max-width: 14ch; }
 .contact .sub { margin-bottom: 26px; }
 .form { display: grid; gap: 10px; max-width: 460px; }
 .form input, .form textarea { font: inherit; color: var(--text); background: color-mix(in srgb, var(--bg2) 80%, transparent); border: 1px solid var(--line2); border-radius: 12px; padding: 12px 14px; width: 100%; transition: border-color .2s; }
@@ -183,7 +200,6 @@ html.cur-big .cur .ring { width: 60px; height: 60px; margin: -30px 0 0 -30px; op
 .form .msg.err { color: #FF8A8A; }
 .soc { display: flex; gap: 18px; margin-top: 26px; font: 500 .7rem var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); flex-wrap: wrap; }
 .soc a:hover { color: var(--a); }
-.slot.c { width: 300px; justify-self: end; }
 footer { max-width: 1180px; margin: 0 auto; padding: 26px 32px 80px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; border-top: 1px solid var(--line); font: 500 .66rem var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
 
 /* ───────── responsive ───────── */
@@ -196,8 +212,8 @@ footer { max-width: 1180px; margin: 0 auto; padding: 26px 32px 80px; display: fl
     background: color-mix(in srgb, var(--bg2) 94%, transparent);
   }
 
-  .hero { grid-template-columns: 1fr; padding: 110px 20px 24px; min-height: 0; gap: 8px; }
-  .slot { order: -1; width: min(62vw, 250px); justify-self: center; }
+  .hero { padding: 116px 20px 32px; }
+  .hero .h1 { max-width: none; }
   .nav .links { display: none; }
   .meta { padding: 18px 20px 80px; gap: 10px 22px; }
   .sec { padding: 0 20px 100px; }
@@ -213,8 +229,7 @@ footer { max-width: 1180px; margin: 0 auto; padding: 26px 32px 80px; display: fl
   .stk { grid-template-columns: repeat(2, 1fr); }
   .ab .gt { min-width: 0; }
   .sk-cols { grid-template-columns: 1fr 1fr; gap: 24px; }
-  .contact { grid-template-columns: 1fr; padding: 0 20px 40px; gap: 24px; }
-  .slot.c { width: 170px; justify-self: start; order: -1; }
+  .contact { padding: 0 20px 40px; }
   footer { padding: 20px 20px 60px; }
 }
 @media (prefers-reduced-motion: reduce) {

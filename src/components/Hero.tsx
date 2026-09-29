@@ -40,7 +40,6 @@ export function Hero() {
             <Magnetic className="btn g" href="#contact">Get in touch</Magnetic>
           </div>
         </div>
-        <div className="slot" id="hero-slot" aria-hidden="true" />
       </section>
       <div className="meta">
         <span>{content.location} · {clock}</span>

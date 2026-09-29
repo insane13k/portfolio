@@ -6,8 +6,13 @@ export function Nav() {
   const reduce = useReducedMotion()
   return (
     <header className="nav">
-      <button id="dock" className="dock" aria-label="Back to top" title="Back to top" onClick={() => scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' })} />
-      <span className="nm">{content.firstName}<b>.</b></span>
+      <a
+        className="nm"
+        href="#top"
+        onClick={e => { e.preventDefault(); scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }) }}
+      >
+        {content.firstName}<b>.</b>
+      </a>
       <nav className="links">
         <a href="#work">Work</a><a href="#about">About</a><a href="#path">Path</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
       </nav>

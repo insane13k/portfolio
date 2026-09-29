@@ -1,6 +1,8 @@
 # Aryan Arora — portfolio
 
-Cyber 3D direction: Solar colours, wireframe object that docks into the nav, starfield, typewriter, big-index projects, live About tiles, drawn timeline.
+Solar colours on a dark ground: typewriter hero, big-index projects, live About
+tiles, a scroll-drawn timeline, and a painted starfield. The animated 3D object
+was removed in favour of a quieter page that costs nothing to render.
 
 ## Change what the site says
 
@@ -55,5 +57,5 @@ and an element the engine never drives stays fully visible.
 
 - `src/content.ts` — all words, links, projects (the only file you need to edit)
 - `src/index.css` — colours and styles (`--a` / `--b` are the two accent colours)
-- `src/components/Scene.tsx` — the 3D object and starfield
+- `src/lib/stringTune.ts` — the motion engine's setup
 - `design/` — the original prototype pages, for reference only
