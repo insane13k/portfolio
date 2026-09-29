@@ -21,6 +21,17 @@ export function Scene() {
     if (!bgC || !objC) return
     let W = innerWidth, H = innerHeight
     const FOV = 30, CZ = 7
+    /**
+     * Phones run the same scene on a much smaller budget: no antialiasing, one
+     * device pixel per CSS pixel, a third of the points and 30 frames a second.
+     * The canvas covers the whole screen, so pixel count is the real cost —
+     * dropping the pixel ratio saves more than any geometry change.
+     */
+    const mobile = W < 760 || matchMedia('(pointer: coarse)').matches
+    const FRAME_MS = mobile ? 1000 / 30 : 0
+    const HALO_POINTS = mobile ? 140 : 420
+    const STAR_POINTS = mobile ? 700 : 2400
+
     const css = getComputedStyle(document.documentElement)
     const colA = new THREE.Color(css.getPropertyValue('--a').trim() || '#FFB547')
     const colB = new THREE.Color(css.getPropertyValue('--b').trim() || '#FF5C8A')
@@ -28,8 +39,13 @@ export function Scene() {
     let rdO: THREE.WebGLRenderer, rdB: THREE.WebGLRenderer
     try {
       const mk = (c: HTMLCanvasElement) => {
-        const r = new THREE.WebGLRenderer({ canvas: c, antialias: true, alpha: true })
-        r.setPixelRatio(Math.min(devicePixelRatio || 1, W < 760 ? 1.5 : 2))
+        const r = new THREE.WebGLRenderer({
+          canvas: c,
+          antialias: !mobile,
+          alpha: true,
+          powerPreference: mobile ? 'low-power' : 'default',
+        })
+        r.setPixelRatio(mobile ? 1 : Math.min(devicePixelRatio || 1, 2))
         r.setSize(W, H, false)
         return r
       }
@@ -60,15 +76,19 @@ export function Scene() {
     const outer = new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(1.15, 1)), lineA)
     const inner = new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(0.72, 0)), lineB)
     const core = new THREE.Mesh(new THREE.IcosahedronGeometry(0.3, 2), coreM)
-    const halo = new THREE.Points(sphereCloud(420, 1.6), ptsM)
+    const halo = new THREE.Points(sphereCloud(HALO_POINTS, 1.6), ptsM)
     group.add(outer, inner, core, halo)
     scO.add(group)
 
     // ── the starfield behind the page
-    const N = 2400, pos = new Float32Array(N * 3)
+    const N = STAR_POINTS, pos = new Float32Array(N * 3)
     for (let i = 0; i < N; i++) { pos[i * 3] = (Math.random() - 0.5) * 22; pos[i * 3 + 1] = (Math.random() - 0.5) * 14; pos[i * 3 + 2] = -9 + Math.random() * 10 }
     const starsG = new THREE.BufferGeometry(); starsG.setAttribute('position', new THREE.BufferAttribute(pos, 3))
-    const stars = new THREE.Points(starsG, new THREE.PointsMaterial({ color: colA, size: 0.014, transparent: true, opacity: 0.8 }))
+    const stars = new THREE.Points(
+      starsG,
+      // Fewer stars on a phone, each a touch larger so the sky still reads.
+      new THREE.PointsMaterial({ color: colA, size: mobile ? 0.02 : 0.014, transparent: true, opacity: 0.8 }),
+    )
     scB.add(stars)
 
     // ── motion state
@@ -91,14 +111,20 @@ export function Scene() {
       tgt.x = (cx / W - 0.5) * visW; tgt.y = -(cy / H - 0.5) * visH; tgt.s = (size / H * visH) / 2.3
     }
 
+    let prevMs = 0
     const frame = (ms: number) => {
       target()
-      const k = reduce ? 1 : 0.085
+      // Smoothing is written per 60fps frame, then corrected for the real gap,
+      // so the object docks at the same speed whatever the frame rate is.
+      const dt = prevMs ? Math.min(64, ms - prevMs) : 16.67
+      prevMs = ms
+      const ease = (per60: number) => 1 - Math.pow(1 - per60, dt / 16.67)
+      const k = reduce ? 1 : ease(0.085)
       cur.x += (tgt.x - cur.x) * k; cur.y += (tgt.y - cur.y) * k; cur.s += (tgt.s - cur.s) * k
-      intro += (1 - intro) * (reduce ? 1 : 0.06)
+      intro += (1 - intro) * (reduce ? 1 : ease(0.06))
       const y = scrollY
-      spin += (reduce ? 0 : state === 'dock' ? 0.006 : 0.0035) + (y - lastY) * 0.0022; lastY = y
-      mx += (tmx - mx) * 0.06; my += (tmy - my) * 0.06
+      spin += (reduce ? 0 : (state === 'dock' ? 0.006 : 0.0035) * (dt / 16.67)) + (y - lastY) * 0.0022; lastY = y
+      const mk = ease(0.06); mx += (tmx - mx) * mk; my += (tmy - my) * mk
       group.position.set(cur.x, cur.y, 0)
       const s = cur.s * (0.02 + 0.98 * intro); group.scale.set(s, s, s)
       group.rotation.y = spin + mx * 0.45; group.rotation.x = 0.12 + my * 0.3
@@ -111,7 +137,14 @@ export function Scene() {
     }
 
     let raf = 0, running = false
-    const loop = (ms: number) => { if (!running) return; frame(ms); raf = requestAnimationFrame(loop) }
+    let lastDraw = 0
+    const loop = (ms: number) => {
+      if (!running) return
+      // On phones only every second frame is drawn — 30fps for a decorative
+      // object, leaving the rest of the frame budget to scrolling.
+      if (!FRAME_MS || ms - lastDraw >= FRAME_MS) { lastDraw = ms; frame(ms) }
+      raf = requestAnimationFrame(loop)
+    }
     const start = () => { if (running || reduce) return; running = true; raf = requestAnimationFrame(loop) }
     const stop = () => { running = false; cancelAnimationFrame(raf) }
     const once = () => frame(performance.now())

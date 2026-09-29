@@ -188,6 +188,14 @@ footer { max-width: 1180px; margin: 0 auto; padding: 26px 32px 80px; display: fl
 
 /* ───────── responsive ───────── */
 @media (max-width: 900px) {
+  /* Backdrop blur behind a fixed bar is repainted on every scrolled frame and
+     is one of the most expensive things a phone GPU can be asked to do. The
+     nav and cards get a near-opaque fill instead — same look, no blur cost. */
+  .nav, .tilt {
+    backdrop-filter: none; -webkit-backdrop-filter: none;
+    background: color-mix(in srgb, var(--bg2) 94%, transparent);
+  }
+
   .hero { grid-template-columns: 1fr; padding: 110px 20px 24px; min-height: 0; gap: 8px; }
   .slot { order: -1; width: min(62vw, 250px); justify-self: center; }
   .nav .links { display: none; }
