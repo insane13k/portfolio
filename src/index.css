@@ -28,9 +28,9 @@ main { position: relative; z-index: 2; }
    Ambience is painted, not rendered: two soft gradients and a fixed field of
    dots drawn once by the compositor. No canvas, no animation loop, no GPU
    cost while scrolling. */
-/* The moving field lives on a canvas; these painted dots sit behind it as the
-   far-distance layer, and are all a no-JS visitor ever sees. */
-.particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+/* The moving starfield is WebGL (components/Starfield.tsx); these painted
+   dots sit behind it as the far layer, and are all a no-JS visitor sees. */
+.starfield { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
 .stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .45;
   background-image:
     radial-gradient(1.4px 1.4px at 12% 18%, var(--a), transparent 60%),

@@ -3,7 +3,7 @@ import { startStringTune } from './lib/stringTune'
 import { Loader } from './components/Loader'
 import { Progress } from './components/Progress'
 import { Cursor } from './components/Cursor'
-import { Particles } from './components/Particles'
+import { Starfield } from './components/Starfield'
 import { Nav } from './components/Nav'
 import { Hero } from './components/Hero'
 import { Work } from './components/Work'
@@ -24,7 +24,7 @@ export default function App() {
       <Progress />
       <div className="glow" aria-hidden="true" />
       <div className="stars" aria-hidden="true" />
-      <Particles />
+      <Starfield />
       <Cursor />
       <Nav />
       <main>
