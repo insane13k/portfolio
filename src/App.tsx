@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
-import Lenis from 'lenis'
-import { useReducedMotion } from './lib/hooks'
+import { startStringTune } from './lib/stringTune'
 import { Loader } from './components/Loader'
 import { Progress } from './components/Progress'
 import { Cursor } from './components/Cursor'
@@ -15,14 +14,9 @@ import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
 
 export default function App() {
-  const reduce = useReducedMotion()
-
-  // Smooth scrolling (skipped for reduced-motion visitors).
-  useEffect(() => {
-    if (reduce) return
-    const lenis = new Lenis({ autoRaf: true })
-    return () => lenis.destroy()
-  }, [reduce])
+  // Smooth scrolling, parallax, magnetic buttons and text reveals all come
+  // from StringTune. It reads the markup, so it only has to be started once.
+  useEffect(startStringTune, [])
 
   return (
     <>

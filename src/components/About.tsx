@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type PointerEvent } from 'react'
 import { content } from '../content'
 import { useClock } from '../lib/hooks'
+import { SplitText } from './SplitText'
 
 /** GitHub contribution levels (0–4) for the last `days` days. Real when a username is set, otherwise a sample pattern. */
 function useContributions(days: number) {
@@ -39,7 +40,7 @@ export function About() {
 
   return (
     <section className="sec" id="about">
-      <div className="sh"><span className="eyebrow">About</span><h2>Who's behind the work.</h2></div>
+      <div className="sh"><span className="eyebrow">About</span><SplitText>Who's behind the work.</SplitText></div>
       <div className="ab" ref={grid} onPointerMove={move}>
         <div className="gt big">
           <div className="av">{initials}</div>

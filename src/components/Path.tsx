@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { content, type Milestone } from '../content'
+import { SplitText } from './SplitText'
 
 /** Experience and education on one timeline. The coloured line draws itself as you scroll; items light up as you reach them. */
 export function Path() {
@@ -26,7 +27,7 @@ export function Path() {
   )
   return (
     <section className="sec" id="path">
-      <div className="sh"><span className="eyebrow">Path</span><h2>Experience and education.</h2></div>
+      <div className="sh"><span className="eyebrow">Path</span><SplitText>Experience and education.</SplitText></div>
       <div className="tl" ref={ref}>
         <div className="tl-line"><i /></div>
         {content.experience.length > 0 && <div className="hh">Experience</div>}

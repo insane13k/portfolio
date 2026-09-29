@@ -73,7 +73,7 @@ html.cur-big .cur .ring { width: 60px; height: 60px; margin: -30px 0 0 -30px; op
 @keyframes blink { 50% { opacity: 0; } }
 .sub { color: var(--muted); max-width: 44ch; font-size: 1.05rem; }
 .cta { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
-.btn { display: inline-block; font: 600 .8rem var(--body); padding: 13px 20px; border-radius: 12px; color: var(--text); border: 1px solid var(--line2); background: color-mix(in srgb, var(--bg2) 60%, transparent); transition: transform .15s ease-out, border-color .2s; cursor: pointer; will-change: transform; }
+.btn { display: inline-block; font: 600 .8rem var(--body); padding: 13px 20px; border-radius: 12px; color: var(--text); border: 1px solid var(--line2); background: color-mix(in srgb, var(--bg2) 60%, transparent); transition: border-color .2s, box-shadow .2s; cursor: pointer; }
 .btn.p { background: linear-gradient(90deg, var(--a), var(--b)); color: #06080F; border-color: transparent; box-shadow: 0 10px 30px -10px var(--a); }
 .btn.g:hover { border-color: var(--a); }
 .slot { aspect-ratio: 1; width: min(100%, 560px); justify-self: end; }
@@ -213,4 +213,52 @@ footer { max-width: 1180px; margin: 0 auto; padding: 26px 32px 80px; display: fl
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
   .ti { opacity: 1; transform: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   StringTune motion layer
+
+   StringTune writes CSS variables (--reveal, --magnetic-x/y,
+   --word-index/--word-total) and this is where they become motion.
+   Everything is scoped to html.tuned, which is only added once the
+   engine has measured its first frame — so with JavaScript off, or
+   when the visitor asks for reduced motion, the page below renders
+   complete, visible and static.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── magnetic buttons ── */
+.mag { will-change: transform; }
+html.tuned .mag {
+  transform: translate3d(calc(var(--magnetic-x, 0) * 1px), calc(var(--magnetic-y, 0) * 1px), 0);
+}
+
+/* ── scroll-linked block reveal ── */
+html.tuned .rv {
+  opacity: var(--reveal, 1);
+  transform: translate3d(0, calc((1 - var(--reveal, 1)) * 20px), 0);
+  will-change: transform, opacity;
+}
+
+/* ── scroll-linked word reveal ──
+   Each word gets its own slice of the heading's progress: --span is how many
+   word-widths of overlap the stagger has, so the line arrives as a wave
+   rather than all at once. */
+.reveal-text .-s-word { display: inline-block; }
+html.tuned .reveal-text .-s-word {
+  --span: 4;
+  --wp: max(0, min(1, (var(--reveal, 1) * (var(--word-global-total, 1) + var(--span)) - var(--word-index, 0)) / var(--span)));
+  opacity: var(--wp);
+  transform: translate3d(0, calc((1 - var(--wp)) * 0.42em), 0);
+  will-change: transform, opacity;
+}
+
+/* ── parallax ──
+   The screenshots drift a little slower than the page. Kept small on purpose:
+   enough to feel like depth, not enough to notice as an effect. */
+.shot.phones img { will-change: transform; }
+
+@media (prefers-reduced-motion: reduce) {
+  html.tuned .rv,
+  html.tuned .reveal-text .-s-word,
+  html.tuned .mag { opacity: 1; transform: none; }
 }

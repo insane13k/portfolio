@@ -1,21 +1,50 @@
-import { useRef, type ReactNode, type PointerEvent } from 'react'
-import { useReducedMotion } from '../lib/hooks'
+import type { ReactNode } from 'react'
 
-type Props = { as?: 'a' | 'button'; className?: string; href?: string; type?: 'button' | 'submit'; children: ReactNode; onClick?: () => void }
+type Props = {
+  as?: 'a' | 'button'
+  className?: string
+  href?: string
+  type?: 'button' | 'submit'
+  children: ReactNode
+  onClick?: () => void
+  /** How far it leans toward the cursor (0–1). */
+  strength?: number
+  /** How close the cursor must be, in pixels, before it reacts. */
+  radius?: number
+}
 
-/** A button that leans toward the cursor while it hovers, and snaps back when it leaves. */
-export function Magnetic({ as = 'a', className = '', href, type, children, onClick }: Props) {
-  const ref = useRef<HTMLElement>(null)
-  const reduce = useReducedMotion()
-  const move = (e: PointerEvent) => {
-    if (reduce || !ref.current) return
-    const r = ref.current.getBoundingClientRect()
-    const dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2)
-    ref.current.style.transform = `translate(${dx * 0.22}px,${dy * 0.22}px)`
+/**
+ * A button that leans toward the cursor. StringTune tracks the pointer and
+ * writes --magnetic-x / --magnetic-y; the `.mag` rule in index.css turns those
+ * into a transform. Touch devices never move it, which is the right behaviour.
+ */
+export function Magnetic({
+  as = 'a',
+  className = '',
+  href,
+  type,
+  children,
+  onClick,
+  strength = 0.32,
+  radius = 120,
+}: Props) {
+  const tune = {
+    'data-string': 'magnetic',
+    'data-string-strength': String(strength),
+    'data-string-radius': String(radius),
   }
-  const leave = () => { if (ref.current) ref.current.style.transform = '' }
+  const cls = `${className} mag`.trim()
+
   if (as === 'button') {
-    return <button ref={ref as React.RefObject<HTMLButtonElement>} type={type ?? 'button'} className={className} onPointerMove={move} onPointerLeave={leave} onClick={onClick}>{children}</button>
+    return (
+      <button type={type ?? 'button'} className={cls} onClick={onClick} {...tune}>
+        {children}
+      </button>
+    )
   }
-  return <a ref={ref as React.RefObject<HTMLAnchorElement>} href={href} className={className} onPointerMove={move} onPointerLeave={leave} onClick={onClick}>{children}</a>
+  return (
+    <a href={href} className={cls} onClick={onClick} {...tune}>
+      {children}
+    </a>
+  )
 }

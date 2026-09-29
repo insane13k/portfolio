@@ -1,6 +1,7 @@
 import { useRef, useState, type PointerEvent } from 'react'
 import { content, type Project } from '../content'
 import { Reveal } from './Reveal'
+import { SplitText } from './SplitText'
 import { Tilt } from './Tilt'
 
 /** Screenshot area: phone screenshots are shown as a pair of phones rising from the bottom edge. */
@@ -10,7 +11,16 @@ function Shot({ p, i, className = '' }: { p: Project; i: number; className?: str
   if (imgs.length === 0) return <div className={`shot${fallback} ${className}`} />
   return (
     <div className={`shot has-img phones ${className}`}>
-      {imgs.slice(0, 2).map(src => <img key={src} src={src} alt={p.title} loading="lazy" />)}
+      {imgs.slice(0, 2).map((src, n) => (
+        <img
+          key={src}
+          src={src}
+          alt={p.title}
+          loading="lazy"
+          data-string="parallax[smooth|default]"
+          data-string-parallax={n === 0 ? '0.05' : '0.085'}
+        />
+      ))}
     </div>
   )
 }
@@ -31,7 +41,7 @@ export function Work() {
 
   return (
     <section className="sec" id="work">
-      <div className="sh"><span className="eyebrow">Selected work</span><h2>Things I've shipped.</h2></div>
+      <div className="sh"><span className="eyebrow">Selected work</span><SplitText>Things I've shipped.</SplitText></div>
       <div className="idx" ref={list} onPointerMove={move} onPointerLeave={() => setHover(null)}>
         {projects.map((p, i) => (
           <a key={p.id} className="ir" href={p.live || p.code || `#${p.id}`} target={p.live || p.code ? '_blank' : undefined} rel="noopener" onPointerEnter={() => setHover(i)}>

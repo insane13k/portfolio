@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { content } from '../content'
 import { Magnetic } from './Magnetic'
+import { SplitText } from './SplitText'
 
 /** Contact form posts to Netlify Forms (free, no backend). Locally it can't send, and says so. */
 export function Contact() {
@@ -43,7 +44,7 @@ export function Contact() {
     <section className="contact" id="contact">
       <div>
         <span className="eyebrow">Contact</span>
-        <h2>{content.contact.heading}</h2>
+        <SplitText>{content.contact.heading}</SplitText>
         <p className="sub">{content.contact.blurb}</p>
         <form className="form" name="contact" onSubmit={submit}>
           <input type="hidden" name="form-name" value="contact" />
