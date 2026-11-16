@@ -1,6 +1,6 @@
+# Static site: no build step, the repository root is published as-is.
 [build]
-  command = "npm run build"
-  publish = "dist"
+  publish = "."
 
 [[headers]]
   for = "/*"

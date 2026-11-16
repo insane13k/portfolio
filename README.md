@@ -1,61 +1,14 @@
 # Aryan Arora — portfolio
 
-Solar colours on a dark ground: typewriter hero, big-index projects, live About
-tiles, a scroll-drawn timeline, and a painted starfield. The animated 3D object
-was removed in favour of a quieter page that costs nothing to render.
+A static, dependency-free portfolio: `index.html`, `styles.css`, `script.js` and `particles.js`
+(a raw-WebGL particle sculpture that morphs between shapes as the chapters scroll by).
 
-## Change what the site says
+- **Run locally:** serve the folder, e.g. `python -m http.server 5190`, and open http://localhost:5190.
+- **Deploy:** every push to `main` goes live on Netlify (https://aryanarora13.netlify.app). There is no build step.
+- **Résumé:** add `resume.pdf` to the repository root; the "Download résumé" button links to it.
+- **Motion:** visitors whose device asks for reduced motion get a still version with a prompt to switch on
+  full motion. `?motion=on` / `?motion=off` sets the choice directly.
+- **3D placement:** each `<section>` in `index.html` carries `data-shape`, `data-px`, `data-py`, `data-ps`
+  and `data-pa` (shape, x/y offset, scale, opacity) read by `particles.js`.
 
-Edit **one file**: `src/content.ts`. Every section reads from it. Leave a field as `""` to hide it.
-Lines marked `// SAMPLE` are placeholders.
-
-- Photos of projects → put them in `public/projects/` and set `image: "/projects/name.jpg"`.
-- Resume → put `resume.pdf` in `public/` and set `resumeUrl: "/resume.pdf"`.
-- Share preview image (WhatsApp / LinkedIn) → `public/og.png`, rendered from `design/og.html` with headless Chrome.
-- GitHub activity tile → set `githubUsername`. Until then it shows a sample pattern.
-
-## Run it on your computer
-
-```bash
-npm install
-npm run dev
-```
-
-Open http://localhost:5180.
-
-## Put it live (free)
-
-Live at **https://aryanarora13.netlify.app** — every push to `main` goes live automatically (GitHub → Netlify).
-
-The contact form sends each message to my inbox through Web3Forms (free; the access key in `src/content.ts` is public by design and only allows sending *to* my address). Netlify Forms keeps a backup copy of every submission in the Netlify dashboard.
-
-```bash
-npm run build   # produces dist/
-```
-
-## Motion
-
-[StringTune](https://tune.fiddle.digital/docs/introduction/) is the only motion
-engine on the site. Effects are declared in the markup as `data-string="…"`
-attributes and arrive as CSS variables; `src/index.css` turns those into
-motion under `html.tuned`.
-
-| Effect | Where it's declared | Variable |
-| --- | --- | --- |
-| Smooth scrolling | `src/lib/stringTune.ts` (desktop only) | — |
-| Magnetic buttons | `components/Magnetic.tsx` | `--magnetic-x/y` |
-| Word-by-word heading reveal | `components/SplitText.tsx` | `--reveal`, `--word-index` |
-| Block reveal | `components/Reveal.tsx` | `--reveal` |
-| Parallax screenshots | `components/Work.tsx` | applied as a transform |
-
-Two rules keep it safe: nothing starts when the visitor's device asks for
-reduced motion, and `html.tuned` is only added after the engine's first
-measured frame — so the page is complete and readable with JavaScript off,
-and an element the engine never drives stays fully visible.
-
-## Where things are
-
-- `src/content.ts` — all words, links, projects (the only file you need to edit)
-- `src/index.css` — colours and styles (`--a` / `--b` are the two accent colours)
-- `src/lib/stringTune.ts` — the motion engine's setup
-- `design/` — the original prototype pages, for reference only
+The previous React version of this site is in the git history before this rewrite.

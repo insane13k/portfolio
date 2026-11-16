@@ -1,5 +1,3 @@
-node_modules
-dist
-.netlify
-*.log
-.DS_Store
+.claude/
+.netlify/
+node_modules/

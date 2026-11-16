@@ -1,35 +1,470 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aryan Arora — Full-stack developer</title>
-    <meta name="description" content="Aryan Arora — software engineer at Capgemini; built and runs Protein Plate 2.0, a live food-delivery platform with a customer site, admin panel and Android apps." />
-    <meta name="theme-color" content="#070A14" />
-    <meta property="og:title" content="Aryan Arora — Full-stack developer" />
-    <meta property="og:description" content="Software engineer at Capgemini. Built and runs Protein Plate 2.0, a live food-delivery platform." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://aryanarora13.netlify.app/" />
-    <meta property="og:image" content="https://aryanarora13.netlify.app/og.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Aryan Arora — Full-stack developer" />
-    <meta name="twitter:description" content="Software engineer at Capgemini. Built and runs Protein Plate 2.0, a live food-delivery platform." />
-    <meta name="twitter:image" content="https://aryanarora13.netlify.app/og.png" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <!-- Netlify needs to see the form in the built HTML once; the React form posts to it. -->
-    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
-      <input type="text" name="name" />
-      <input type="email" name="email" />
-      <textarea name="message"></textarea>
-    </form>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aryan Arora — Software Engineer</title>
+  <meta name="description" content="Aryan Arora is a software engineer at Capgemini working in quality engineering, and the founder and product lead behind Protein Plate, a live food-delivery platform built through AI-directed development.">
+  <meta name="theme-color" content="#07070a">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Aryan Arora — Software Engineer">
+  <meta property="og:description" content="Quality engineer at Capgemini by day. Founder and product lead of Protein Plate, a live food-delivery platform built by directing AI coding agents.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    /* Motion states only exist when JS runs. Loader: once per session, never under reduced motion.
+       Failsafes: the loader always goes by 2s; if script.js has not run by 2.5s, drop .js so nothing stays hidden. */
+    (function (h) {
+      h.classList.add('js');
+      /* Motion: the visitor's own choice (?motion=on|off, remembered) wins; otherwise follow the device setting. */
+      var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches, seen = 1, pick = null;
+      try { var q = /[?&]motion=(on|off)/.exec(location.search); if (q) localStorage.setItem('aa-motion', q[1]); pick = localStorage.getItem('aa-motion'); } catch (e) {}
+      if (pick) rm = pick === 'off';
+      if (!rm) h.classList.add('motion');
+      else if (!pick) h.classList.add('ask-motion');
+      try { if (q && history.replaceState) history.replaceState(null, '', location.pathname + location.hash); } catch (e) {}
+      try { seen = sessionStorage.getItem('aa-run'); } catch (e) {}
+      if (!rm && !seen) h.classList.add('is-loading');
+      setTimeout(function () { h.classList.remove('is-loading'); h.classList.add('ready'); }, 2000);
+      setTimeout(function () { if (!window.AA) h.classList.remove('js', 'is-loading'); }, 2500);
+    })(document.documentElement);
+  </script>
+  <script src="particles.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <canvas id="stage" aria-hidden="true"></canvas>
+
+  <div class="loader" aria-hidden="true">
+    <div class="loader-panel loader-panel-top"></div>
+    <div class="loader-panel loader-panel-bottom"></div>
+    <div class="loader-core mono">
+      <p class="loader-line"><span class="loader-run">RUNNING</span> portfolio.spec</p>
+      <p class="loader-count"><span class="loader-num">000</span><span class="loader-pct">%</span></p>
+      <span class="loader-bar"><span class="loader-fill"></span></span>
+    </div>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="progress" aria-hidden="true"><span class="progress-bar"></span></div>
+
+  <header class="site-header">
+    <div class="nav-pill">
+      <a class="wordmark" href="#top" aria-label="Aryan Arora, back to top"><span class="wordmark-mark" aria-hidden="true">AA</span><span class="wordmark-name">Aryan <em>Arora</em></span></a>
+
+      <nav class="nav" aria-label="Primary">
+        <ul>
+          <li><a href="#about" data-nav="1"><span class="nav-num mono">01</span>About</a></li>
+          <li><a href="#work" data-nav="2"><span class="nav-num mono">02</span>Work</a></li>
+          <li><a href="#experience" data-nav="3"><span class="nav-num mono">03</span>Experience</a></li>
+          <li><a href="#skills" data-nav="4"><span class="nav-num mono">04</span>Skills</a></li>
+          <li><a href="#contact" data-nav="5"><span class="nav-num mono">05</span>Contact</a></li>
+        </ul>
+      </nav>
+
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">
+        <span class="menu-btn-label">Menu</span>
+        <span class="menu-btn-icon" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </div>
+
+    <nav class="menu" id="menu" aria-label="Mobile">
+      <ol class="menu-list">
+        <li><a href="#about"><span class="menu-num mono">01</span>About</a></li>
+        <li><a href="#work"><span class="menu-num mono">02</span>Work</a></li>
+        <li><a href="#experience"><span class="menu-num mono">03</span>Experience</a></li>
+        <li><a href="#skills"><span class="menu-num mono">04</span>Skills</a></li>
+        <li><a href="#contact"><span class="menu-num mono">05</span>Contact</a></li>
+      </ol>
+      <p class="menu-foot mono"><a href="mailto:aryanarora7733@gmail.com">aryanarora7733@gmail.com</a></p>
+    </nav>
+  </header>
+
+  <aside class="hud mono" aria-label="Test run: portfolio.spec">
+    <p class="hud-head"><span class="hud-file">portfolio.spec</span> <span class="hud-count" aria-live="polite"><span class="hud-n">0</span>/6 passed</span></p>
+    <ol class="hud-list">
+      <li><a href="#top" data-hud="0"><span class="hud-dot" aria-hidden="true"></span>hero renders</a></li>
+      <li><a href="#about" data-hud="1"><span class="hud-dot" aria-hidden="true"></span>about is honest</a></li>
+      <li><a href="#work" data-hud="2"><span class="hud-dot" aria-hidden="true"></span>work ships</a></li>
+      <li><a href="#experience" data-hud="3"><span class="hud-dot" aria-hidden="true"></span>experience checks out</a></li>
+      <li><a href="#skills" data-hud="4"><span class="hud-dot" aria-hidden="true"></span>skills verified</a></li>
+      <li><a href="#contact" data-hud="5"><span class="hud-dot" aria-hidden="true"></span>contact reachable</a></li>
+    </ol>
+  </aside>
+
+  <div class="motion-ask" role="region" aria-label="Animation setting">
+    <p><strong>You're seeing the still version.</strong> This device has animations turned off, so the 3D and scroll motion are paused.</p>
+    <div class="motion-ask-actions">
+      <a class="btn btn-primary" href="?motion=on">Play full motion</a>
+      <button class="btn btn-ghost motion-ask-no" type="button">Keep it still</button>
+    </div>
+  </div>
+
+  <main id="main" tabindex="-1">
+
+    <!-- TC-00 Hero -->
+    <section class="hero chapter" id="top" aria-labelledby="hero-title"
+             data-shape="sphere" data-px="0.5" data-py="-0.04" data-ps="0.95" data-pa="1">
+      <div class="wrap hero-inner">
+        <div class="tc"><span class="tc-id mono">TC-00 / HERO</span><span class="stamp mono" aria-hidden="true">PASS</span></div>
+        <p class="eyebrow mono hero-fade">Software Engineer <span class="sep" aria-hidden="true">·</span> Capgemini <span class="sep" aria-hidden="true">·</span> Navi Mumbai</p>
+
+        <h1 class="hero-name flip" id="hero-title" aria-label="Aryan Arora">
+          <span class="line line-fill" aria-hidden="true"><span class="ch" style="--i:0">A</span><span class="ch" style="--i:1">R</span><span class="ch" style="--i:2">Y</span><span class="ch" style="--i:3">A</span><span class="ch" style="--i:4">N</span></span>
+          <span class="line line-outline" aria-hidden="true"><span class="ch" style="--i:5">A</span><span class="ch" style="--i:6">R</span><span class="ch" style="--i:7">O</span><span class="ch" style="--i:8">R</span><span class="ch" style="--i:9">A</span></span>
+        </h1>
+
+        <p class="ticker hero-fade">
+          <span class="ticker-pre mono" aria-hidden="true">&gt;_</span>
+          <span class="ticker-window">
+            <span class="ticker-track">
+              <span class="ticker-item">Software Engineer @ Capgemini</span>
+              <span class="ticker-item">Quality Engineer</span>
+              <span class="ticker-item">AI-directed builder</span>
+              <span class="ticker-item">Founder, Protein Plate</span>
+              <span class="ticker-item ticker-dup" aria-hidden="true">Software Engineer @ Capgemini</span>
+            </span>
+          </span>
+        </p>
+
+        <p class="hero-statement hero-fade">I test enterprise software by day and ship a live food-delivery platform on the side — built by directing AI coding agents, and verified the way a tester would.</p>
+
+        <div class="hero-actions hero-fade">
+          <a class="btn btn-primary magnetic" href="#work" data-cursor="View"><span>See the work</span><span class="btn-arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost magnetic" href="#contact"><span>Get in touch</span></a>
+        </div>
+
+        <dl class="facts hero-fade">
+          <div><dt class="mono">Based in</dt><dd>Navi Mumbai</dd></div>
+          <div><dt class="mono">From</dt><dd>Jodhpur</dd></div>
+          <div><dt class="mono">Currently</dt><dd>Capgemini</dd></div>
+          <div><dt class="mono">Side product</dt><dd><a href="https://proteinplate.co.in" target="_blank" rel="noopener">proteinplate.co.in<span class="visually-hidden"> (opens in a new tab)</span></a></dd></div>
+        </dl>
+      </div>
+
+      <a class="scroll-cue mono" href="#about" aria-label="Scroll to About"><span class="scroll-cue-line" aria-hidden="true"></span><span aria-hidden="true">Scroll</span></a>
+    </section>
+
+    <!-- Kinetic marquee (decorative) -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-row" data-dir="-1">
+        <div class="marquee-track">
+          <span class="marquee-copy"><b>Testing</b> <i>—</i> <s>Automation</s> <i>—</i> <b>AI-directed development</b> <i>—</i> <s>Product thinking</s> <i>—</i> </span><span class="marquee-copy"><b>Testing</b> <i>—</i> <s>Automation</s> <i>—</i> <b>AI-directed development</b> <i>—</i> <s>Product thinking</s> <i>—</i> </span>
+        </div>
+      </div>
+      <div class="marquee-row" data-dir="1">
+        <div class="marquee-track">
+          <span class="marquee-copy"><s>Testing</s> <i>—</i> <b>Automation</b> <i>—</i> <s>AI-directed development</s> <i>—</i> <b>Product thinking</b> <i>—</i> </span><span class="marquee-copy"><s>Testing</s> <i>—</i> <b>Automation</b> <i>—</i> <s>AI-directed development</s> <i>—</i> <b>Product thinking</b> <i>—</i> </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TC-01 About -->
+    <section class="chapter about" id="about" aria-labelledby="about-title"
+             data-shape="aa" data-px="-0.6" data-py="0.05" data-ps="0.68" data-pa="0.75">
+      <div class="wrap split-right">
+        <div class="col">
+          <div class="tc" data-reveal><span class="tc-id mono">TC-01 / ABOUT</span><span class="stamp mono" aria-hidden="true">PASS</span></div>
+
+          <h2 class="d-m about-title" id="about-title" data-reveal>I think like a tester and build like a <em class="serif grad">product owner.</em></h2>
+
+          <p class="about-lead scrub" data-reveal>I’m a software engineer at Capgemini, working in quality engineering — designing test cases, running integration and acceptance cycles, and making sure a release holds up before people depend on it. I grew up in Jodhpur, Rajasthan, finished my MCA at JECRC University in 2025, and now live in Navi Mumbai.</p>
+
+          <div class="panel about-panel" data-reveal>
+            <p>Outside work I run Protein Plate, a cloud kitchen, and I’m the person behind its entire software platform. To be plain about it: the code was written by AI coding agents — Claude Code, Google Antigravity and OpenAI Codex. My part was everything around the code: deciding what to build, guiding the agents, stepping in where they fell short, testing every flow, and running it live for real customers.</p>
+            <p>I call that <strong class="hl">AI-directed development</strong>. My strength isn’t deep hand-coding; it’s product thinking, and knowing exactly how software breaks.</p>
+          </div>
+
+          <a class="next mono" href="#work" data-reveal>Next — <span>02 Work</span> <span class="next-arrow" aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TC-02 Work -->
+    <section class="chapter work" id="work" aria-labelledby="work-title"
+             data-shape="plate" data-px="0.5" data-py="0.1" data-ps="0.9" data-pa="0.4">
+      <div class="wrap work-head">
+        <div class="tc" data-reveal><span class="tc-id mono">TC-02 / WORK</span><span class="stamp mono" aria-hidden="true">PASS</span></div>
+        <p class="kicker mono" data-reveal>Featured case study</p>
+        <h2 class="d-l work-title" id="work-title" data-reveal><span class="wt-a">Protein</span> <span class="wt-b serif">Plate</span></h2>
+
+        <div class="work-meta-row">
+          <dl class="case-meta" data-reveal>
+            <div><dt class="mono">Role</dt><dd>Founder &amp; product lead</dd></div>
+            <div><dt class="mono">Method</dt><dd>AI-directed build</dd></div>
+            <div><dt class="mono">Status</dt><dd><span class="live-dot" aria-hidden="true"></span>Live, taking orders</dd></div>
+          </dl>
+          <p data-reveal><a class="text-link" href="https://proteinplate.co.in" target="_blank" rel="noopener" data-cursor="Visit">Visit proteinplate.co.in <span aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></p>
+        </div>
+      </div>
+
+      <!-- Pinned 3D phone scrollytelling (stacks without JS / on mobile / reduced motion) -->
+      <div class="scrolly">
+        <div class="scrolly-stage">
+          <div class="wrap scrolly-grid">
+            <div class="beats">
+              <article class="beat" data-beat="0">
+                <p class="beat-num mono">01 — What it is</p>
+                <h3 class="beat-title">A cloud kitchen with its <em class="serif">own</em> ordering platform.</h3>
+                <p class="beat-text">A cloud kitchen in India with its own ordering platform — from the menu a customer taps through, to the console the kitchen runs on, to the rules that keep every order’s data safe.</p>
+              </article>
+              <article class="beat" data-beat="1">
+                <p class="beat-num mono">02 — The platform</p>
+                <h3 class="beat-title">Five pieces, <em class="serif">one</em> product.</h3>
+                <ul class="pieces">
+                  <li><span class="piece-name">Customer website</span><span class="piece-tech mono">React 19 + Vite</span></li>
+                  <li><span class="piece-name">Admin &amp; kitchen console</span><span class="piece-tech mono">Web</span></li>
+                  <li><span class="piece-name">Customer Android app</span><span class="piece-tech mono">React Native / Expo</span></li>
+                  <li><span class="piece-name">Admin Android app</span><span class="piece-tech mono">React Native / Expo</span></li>
+                  <li><span class="piece-name">Backend</span><span class="piece-tech mono">Firebase — Firestore, Auth with phone OTP, Cloud Functions, Hosting</span></li>
+                </ul>
+              </article>
+              <article class="beat" data-beat="2">
+                <p class="beat-num mono">03 — How it’s kept honest</p>
+                <h3 class="beat-title">Tested like a <em class="serif">tester</em> would.</h3>
+                <ul class="quality">
+                  <li><span class="q-check" aria-hidden="true">✓</span><span><strong>Security rules, tested.</strong> Firestore rules backed by an automated test suite run on the Firebase emulator.</span></li>
+                  <li><span class="q-check" aria-hidden="true">✓</span><span><strong>Functions, unit-tested.</strong> Cloud Functions covered by unit tests.</span></li>
+                  <li><span class="q-check" aria-hidden="true">✓</span><span><strong>Flows, end to end.</strong> Full order flows exercised end to end on the emulator.</span></li>
+                </ul>
+              </article>
+              <div class="beat-steps mono" aria-hidden="true"><span class="beat-step-n">1</span>/3 <span class="beat-step-bar"><span></span></span></div>
+            </div>
+
+            <figure class="phones">
+              <div class="phones-3d">
+                <div class="phones-float">
+                  <div class="phones-rig">
+                    <div class="phone phone-a">
+                      <img src="assets/pp2.jpeg" width="636" height="1329" loading="lazy" decoding="async"
+                           alt="Protein Plate menu on a phone: pasta dishes listed with price, a bestseller tag, and calories, protein, carbs and fat for each dish.">
+                      <span class="phone-glare" aria-hidden="true"></span>
+                    </div>
+                    <div class="phone phone-b">
+                      <img src="assets/pp1.jpeg" width="636" height="1330" loading="lazy" decoding="async"
+                           alt="Protein Plate cart on a phone: one pasta dish with a nutritional breakdown for the cart, delivery address, an applied coupon and a Proceed to Checkout button.">
+                      <span class="phone-glare" aria-hidden="true"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption class="mono">Customer site — menu and cart</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrap work-more">
+        <div class="block">
+          <h3 class="block-title mono" data-reveal>What it does</h3>
+          <ul class="features" data-reveal="stagger">
+            <li>Menu with per-order nutrition breakdown</li>
+            <li>Cart and checkout</li>
+            <li>UPI payments</li>
+            <li>Live order tracking</li>
+            <li>Subscriptions</li>
+            <li>Refunds</li>
+            <li>Delivery quotes by region</li>
+            <li>Rider links</li>
+            <li>Push notifications</li>
+            <li>Transactional emails</li>
+            <li>Rate limiting</li>
+            <li>Role-based admin access</li>
+            <li>Site analytics</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h3 class="block-title mono" data-reveal>Stack</h3>
+          <ul class="tags" aria-label="Stack" data-reveal="stagger">
+            <li>React</li><li>Vite</li><li>Firebase</li><li>Firestore</li><li>Cloud Functions</li><li>React Native</li><li>Expo</li><li>UPI</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Pinned horizontal process (stacks without JS / reduced motion) -->
+      <div class="hscroll">
+        <div class="hscroll-stage">
+          <span class="hscroll-progress" aria-hidden="true"><span></span></span>
+          <div class="wrap hscroll-head">
+            <h3 class="d-m process-title" id="process-title">How it was <em class="serif grad">built</em></h3>
+            <p class="mono hscroll-hint" aria-hidden="true">Scroll →</p>
+          </div>
+          <ol class="hscroll-track">
+            <li class="hpanel">
+              <span class="hpanel-num" aria-hidden="true">01</span>
+              <p class="mono hpanel-idx">Step 01</p>
+              <h4>Direct</h4>
+              <p>I define the feature, the constraints and what “done” means.</p>
+            </li>
+            <li class="hpanel">
+              <span class="hpanel-num" aria-hidden="true">02</span>
+              <p class="mono hpanel-idx">Step 02</p>
+              <h4>Build</h4>
+              <p>AI agents — Claude Code, Antigravity, Codex — write the code.</p>
+            </li>
+            <li class="hpanel">
+              <span class="hpanel-num" aria-hidden="true">03</span>
+              <p class="mono hpanel-idx">Step 03</p>
+              <h4>Verify</h4>
+              <p>I test it like a QA engineer: flows, edge cases, security rules.</p>
+            </li>
+            <li class="hpanel">
+              <span class="hpanel-num" aria-hidden="true">04</span>
+              <p class="mono hpanel-idx">Step 04</p>
+              <h4>Ship</h4>
+              <p>Deployed to Firebase, serving real orders.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <a class="next mono" href="#experience" data-reveal>Next — <span>03 Experience</span> <span class="next-arrow" aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <!-- TC-03 Experience -->
+    <section class="chapter experience" id="experience" aria-labelledby="experience-title"
+             data-shape="helix" data-px="-0.55" data-py="0" data-ps="1" data-pa="0.7">
+      <div class="wrap split-right split-third">
+        <div class="col">
+          <div class="tc" data-reveal><span class="tc-id mono">TC-03 / EXPERIENCE</span><span class="stamp mono" aria-hidden="true">PASS</span></div>
+          <h2 class="d-l" id="experience-title" data-reveal>Experience <span class="amp serif">&amp;</span> <span class="outline">education</span></h2>
+
+          <div class="timeline">
+          <span class="tl-rail" aria-hidden="true"><span class="tl-line"></span><span class="tl-dot"></span></span>
+          <ol class="tl-list">
+            <li class="tl-item" data-reveal="tilt">
+              <p class="tl-when mono"><time datetime="2025-08">Aug 2025</time> – Present</p>
+              <h3>Software Engineer <span class="org">Capgemini, Navi Mumbai</span></h3>
+              <p>Quality engineering on a Workforce Management (WFM) platform for a global retail client — test case design, integration testing, payroll testing and UAT support across release cycles.</p>
+            </li>
+            <li class="tl-item" data-reveal="tilt">
+              <p class="tl-when mono"><time datetime="2025">2025</time> – Present</p>
+              <h3>Founder &amp; product lead <span class="org">Protein Plate, own product</span></h3>
+              <p>A cloud kitchen and its full ordering platform — web, admin console, two Android apps and a Firebase backend — built by directing AI coding agents, then tested and run live.</p>
+            </li>
+            <li class="tl-item" data-reveal="tilt">
+              <p class="tl-when mono"><time datetime="2023">2023</time> – <time datetime="2025">2025</time></p>
+              <h3>MCA, Master of Computer Applications <span class="org">JECRC University, Jaipur</span></h3>
+            </li>
+            <li class="tl-item" data-reveal="tilt">
+              <p class="tl-when mono"><time datetime="2020">2020</time> – <time datetime="2023">2023</time></p>
+              <h3>BCA, Bachelor of Computer Applications <span class="org">Lachoo Memorial College, Jodhpur</span></h3>
+            </li>
+          </ol>
+          </div>
+
+          <a class="next mono" href="#skills" data-reveal>Next — <span>04 Skills</span> <span class="next-arrow" aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TC-04 Skills -->
+    <section class="chapter skills" id="skills" aria-labelledby="skills-title"
+             data-shape="check" data-px="0.6" data-py="0.08" data-ps="0.75" data-pa="0.28">
+      <div class="wrap">
+        <div class="tc" data-reveal><span class="tc-id mono">TC-04 / SKILLS</span><span class="stamp mono" aria-hidden="true">PASS</span></div>
+        <h2 class="d-l" id="skills-title" data-reveal>What I <em class="serif grad">bring</em></h2>
+
+        <div class="cards">
+          <article class="card" data-reveal>
+            <div class="tilt">
+              <span class="card-num" aria-hidden="true">01</span>
+              <div class="card-in">
+                <h3>Testing &amp; QA</h3>
+                <ul><li>Test case design</li><li>Integration testing</li><li>UAT</li><li>Payroll testing</li><li>Manual &amp; exploratory testing</li></ul>
+              </div>
+              <span class="card-glare" aria-hidden="true"></span>
+            </div>
+          </article>
+          <article class="card" data-reveal>
+            <div class="tilt">
+              <span class="card-num" aria-hidden="true">02</span>
+              <div class="card-in">
+                <h3>Automation</h3>
+                <ul><li>Selenium</li><li>Playwright</li></ul>
+              </div>
+              <span class="card-glare" aria-hidden="true"></span>
+            </div>
+          </article>
+          <article class="card" data-reveal>
+            <div class="tilt">
+              <span class="card-num" aria-hidden="true">03</span>
+              <div class="card-in">
+                <h3>Languages</h3>
+                <ul><li>Java</li><li>Python</li></ul>
+              </div>
+              <span class="card-glare" aria-hidden="true"></span>
+            </div>
+          </article>
+          <article class="card" data-reveal>
+            <div class="tilt">
+              <span class="card-num" aria-hidden="true">04</span>
+              <div class="card-in">
+                <h3>AI-assisted development</h3>
+                <ul><li>Claude Code</li><li>Google Antigravity</li><li>OpenAI Codex</li><li>Prompt &amp; spec writing</li><li>Reviewing and verifying AI-written code</li></ul>
+              </div>
+              <span class="card-glare" aria-hidden="true"></span>
+            </div>
+          </article>
+          <article class="card" data-reveal>
+            <div class="tilt">
+              <span class="card-num" aria-hidden="true">05</span>
+              <div class="card-in">
+                <h3>Product &amp; platform</h3>
+                <ul><li>Firebase</li><li>React</li><li>React Native / Expo</li><li>UPI payment flows</li><li>Git &amp; GitHub</li></ul>
+              </div>
+              <span class="card-glare" aria-hidden="true"></span>
+            </div>
+          </article>
+        </div>
+
+        <a class="next mono" href="#contact" data-reveal>Next — <span>05 Contact</span> <span class="next-arrow" aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <!-- TC-05 Contact -->
+    <section class="chapter contact" id="contact" aria-labelledby="contact-title"
+             data-shape="at" data-px="0.45" data-py="0" data-ps="0.9" data-pa="0.9">
+      <div class="wrap split-left">
+        <div class="col">
+          <div class="tc" data-reveal><span class="tc-id mono">TC-05 / CONTACT</span><span class="stamp mono" aria-hidden="true">PASS</span></div>
+
+          <h2 class="contact-title flip" id="contact-title" aria-label="Let’s talk" data-reveal="flip">
+            <span class="line line-fill" aria-hidden="true"><span class="ch" style="--i:0">L</span><span class="ch" style="--i:1">E</span><span class="ch" style="--i:2">T</span><span class="ch" style="--i:3">’</span><span class="ch" style="--i:4">S</span></span>
+            <span class="line line-outline" aria-hidden="true"><span class="ch" style="--i:5">T</span><span class="ch" style="--i:6">A</span><span class="ch" style="--i:7">L</span><span class="ch" style="--i:8">K</span></span>
+          </h2>
+
+          <p class="lead" data-reveal>Quality engineering, AI-directed product work, or something you saw here — my inbox is open.</p>
+
+          <div class="email-row" data-reveal>
+            <a class="contact-email" href="mailto:aryanarora7733@gmail.com" data-cursor="Write">aryanarora7733@gmail.com</a>
+            <button class="copy-btn mono" type="button" data-copy="aryanarora7733@gmail.com" hidden>Copy</button>
+            <span class="copy-status mono" aria-live="polite"></span>
+          </div>
+
+          <div class="contact-actions" data-reveal>
+            <a class="btn btn-primary magnetic" href="resume.pdf" download><span>Download résumé</span><span class="btn-arrow" aria-hidden="true">↓</span></a>
+            <a class="btn btn-ghost magnetic" href="https://www.linkedin.com/in/aryan1306" target="_blank" rel="noopener"><span>LinkedIn</span><span class="btn-arrow" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner mono">
+      <p>© 2026 Aryan Arora</p>
+      <p>Jodhpur <span aria-hidden="true">→</span><span class="visually-hidden">to</span> Navi Mumbai</p>
+      <p><a href="#top">Back to top <span aria-hidden="true">↑</span></a></p>
+      <a class="motion-switch motion-on" href="?motion=on">Motion: off — turn on</a><a class="motion-switch motion-off" href="?motion=off">Motion: on — turn off</a>
+    </div>
+  </footer>
+</body>
 </html>
