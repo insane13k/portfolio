@@ -4,7 +4,7 @@ A static, dependency-free portfolio: `index.html`, `styles.css`, `script.js` and
 (a raw-WebGL particle sculpture that morphs between shapes as the chapters scroll by).
 
 - **Run locally:** serve the folder, e.g. `python -m http.server 5190`, and open http://localhost:5190.
-- **Deploy:** every push to `main` goes live on Netlify (https://aryanarora13.netlify.app). There is no build step.
+- **Deploy:** every push to `main` goes live on Netlify (https://aryanarora13.netlify.app). The "build" only copies the site files into `dist/`.
 - **Résumé:** add `resume.pdf` to the repository root; the "Download résumé" button links to it.
 - **Motion:** visitors whose device asks for reduced motion get a still version with a prompt to switch on
   full motion. `?motion=on` / `?motion=off` sets the choice directly.

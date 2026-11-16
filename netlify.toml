@@ -1,8 +1,8 @@
-# Static site: no build step, the repository root is published as-is.
+# Static site, no real build: the files are copied into dist/, the publish folder
+# the Netlify project is already set up to deploy.
 [build]
-  publish = "."
-  # Explicit no-op: overrides the old "npm run build" still saved in the Netlify dashboard.
-  command = "echo 'Static site - nothing to build'"
+  publish = "dist"
+  command = "rm -rf dist && mkdir dist && cp -r index.html styles.css script.js particles.js favicon.svg assets dist/ && if [ -f resume.pdf ]; then cp resume.pdf dist/; fi"
 
 [[headers]]
   for = "/*"
